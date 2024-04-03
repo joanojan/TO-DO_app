@@ -1,6 +1,3 @@
-#api key
-src/api/supabase.js
-
 # Logs
 logs
 *.log
