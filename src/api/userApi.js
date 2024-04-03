@@ -6,6 +6,7 @@ export const fetchActualUser = async () => {
 }
 
 export const createNewUser = async (email, password) => {
+  console.log(email, password)
   const { data, error } = await supabase.auth.signUp({ email, password })
 
   if (error) {
@@ -35,4 +36,5 @@ export const logOut = async () => {
       throw new Error(error.message)
     }
     alert('See ya next time')
+    return undefined
 }

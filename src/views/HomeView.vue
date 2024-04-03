@@ -8,7 +8,7 @@ const userStore = useUserStore()
 
 const signOut = () => {
 	userStore.signOut()
-	router.push({ name: 'signin'})
+	router.push({ name: 'signin' })
 }
 </script>
 
@@ -19,5 +19,4 @@ const signOut = () => {
 	</main>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

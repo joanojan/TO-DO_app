@@ -39,7 +39,7 @@ export const useUserStore = defineStore('user', () => {
 
   async function signOut() {
     try {
-      logOut()
+      user.value = await logOut()
     } catch (error) {
       console.error(error)
     }
