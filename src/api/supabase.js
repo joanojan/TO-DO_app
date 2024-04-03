@@ -1,7 +1,7 @@
 //A RESTful endpoint for querying and managing your database.
-const PROJECT_URL = 'https://ysvtdjwtvwdmahyaqunc.supabase.co'
+const PROJECT_URL = import.meta.env.VITE_SUPABASE_URL
 //API key
-//safe if you have enabled Row Level Security (RLS) for your tables and configured policies
+const API_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 import { createClient } from '@supabase/supabase-js'
 
