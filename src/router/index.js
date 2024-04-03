@@ -25,7 +25,14 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue')
+    },
+    {
+      path: '/confirmEmail',
+      name: 'confirmEmail',
+      component: () => import('@/views/ConfirmEmail.vue')
     }
+
+
   ]
 })
 
@@ -36,7 +43,7 @@ router.beforeEach(async (to, from, next) => {
     await userStore.fetchUser()
   }
 
-  if (userStore.user === null && to.name !== 'signin') {
+  if (userStore.user === null && to.name !== 'signin' && to.name !== 'signup') {
     next({ name: 'signin' })
   } else {
     next()
