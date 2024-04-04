@@ -22,11 +22,25 @@ export const logIn = async (email, password) => {
     error
   } = await supabase.auth.signInWithPassword({ email, password })
 
-  if (error) {
-    throw new Error(error.message)
+  switch (error) {
+    case '404':
+      alert('This user does not exist')
+      break
+    case '403':
+      alert('unauthorized, please contact admin@admin.com')
+      break
+    case '429':
+      alert('There is an issue with too many request, sorry.')
+      break
+    default:
+      console.log(error)
+      alert('Unknown error: please try again')
   }
-  alert('Yay - sign in success')
-  return user
+
+  if(!error) {
+    alert('Yay - sign in success')
+    return user
+  }
 }
 
 export const logOut = async () => {
