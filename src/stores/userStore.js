@@ -6,6 +6,8 @@ export const useUserStore = defineStore('user', () => {
   // State
   const user = ref(undefined)
 
+  const error = ref(undefined)
+
   // Getters
 
   // Actions
@@ -23,17 +25,17 @@ export const useUserStore = defineStore('user', () => {
   async function signUp(email, password) {
     try {
       user.value = await createNewUser(email, password)
-
     } catch (error) {
       console.error(error)
     }
   }
 
   async function signIn(email, password) {
+    // eslint-disable-next-line no-useless-catch
     try {
       user.value = await logIn(email, password)
     } catch (error) {
-      console.error(error)
+        throw error
     }
   }
 
@@ -48,6 +50,7 @@ export const useUserStore = defineStore('user', () => {
   return {
     // State
     user,
+    error,
     // Getters
     // Actions
     fetchUser,

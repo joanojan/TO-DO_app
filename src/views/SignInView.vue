@@ -11,8 +11,12 @@ const user = ref('')
 const password = ref('')
 
 const signIn = async () => {
-	await userStore.signIn(user.value, password.value)
-	router.push({ name: 'home' })
+	try {
+		await userStore.signIn(user.value, password.value)
+		router.push({ name: 'home' })
+	} catch (error) {
+		alert('Error login')
+	}
 }
 
 const signUp = () => {
@@ -23,19 +27,13 @@ const signUp = () => {
 
 <template>
 	<main>
-		<h1>Sign In View!</h1>
-		<form>
-			<label>
-				User:
-				<input autocomplete="off" type="text" v-model="user" />
-			</label>
-			<label>
-				Password:
-				<input type="password" v-model="password" />
-			</label>
+		<form @submit.prevent="signIn">
+			<input type="email" v-model="user" placeholder="Email" />
+			<input type="password" v-model="password" placeholder="Password" />
+			<button type="submit">Sign In</button>
+			<div v-if="userStore.error">{{ userStore.error.message }}</div>
 		</form>
 
-		<button @click="signIn">Sign In</button>
 		<button @click="signUp">Sing Up</button>
 	</main>
 </template>
