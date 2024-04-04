@@ -16,7 +16,7 @@ const signOut = () => {
     <button v-show="$route.path !== '/signin'" @click="signOut">Sign Out</button>
     <div class="wrapper">
 			<nav>				
-				<RouterLink to="/">Home</RouterLink>
+				<RouterLink to="/">Tasks</RouterLink>
 				<RouterLink to="/about">About</RouterLink>
 			</nav>
 		</div>
