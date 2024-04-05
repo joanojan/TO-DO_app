@@ -13,11 +13,11 @@ const signOut = () => {
 </script>
 
 <template>
-    <button v-show="$route.path !== '/signin'" @click="signOut">Sign Out</button>
-    <div class="wrapper">
-			<nav>				
-				<RouterLink to="/">Tasks</RouterLink>
-				<RouterLink to="/about">About</RouterLink>
-			</nav>
-		</div>
+	<button v-show="$route.path !== '/signin' && $route.path !== '/signup'" @click="signOut">Sign Out</button>
+	<div class="wrapper">
+		<nav>
+			<RouterLink to="/">Tasks</RouterLink>
+			<RouterLink to="/about">About</RouterLink>
+		</nav>
+	</div>
 </template>

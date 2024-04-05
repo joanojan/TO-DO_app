@@ -20,7 +20,7 @@ const handleSubmit = async () => {
             name: "confirmEmail",
         });
     } catch (error) {
-        alert(error.message);
+        alert('signUp error --> ',error.message);
     }
 }
 </script>
