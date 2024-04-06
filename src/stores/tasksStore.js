@@ -6,20 +6,26 @@ export const useTasksStore = defineStore('tasks', () => {
   // State
   const tasks = ref([])
 
+  const isLoading = ref(false)
+
   // Getters
 
   // Actions
-  function fetchTasks() {
+  async function fetchTasks() {
     try {
-      tasks.value = fetchAllTasks()
+      isLoading.value = true
+      tasks.value = await fetchAllTasks()
     } catch (error) {
       console.error(error)
+    } finally {
+      isLoading.value = false
     }
   }
 
   return {
     // State
     tasks,
+    isLoading,
     // Getters
     // Actions
     fetchTasks

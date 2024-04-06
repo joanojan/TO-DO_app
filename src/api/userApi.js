@@ -29,7 +29,6 @@ export const logIn = async (email, password) => {
     throw new Error(error.message)
   }
 
-  alert('Yay - sign in success')
   return user
 }
 
@@ -39,6 +38,6 @@ export const logOut = async () => {
   if (error) {
     throw new Error(error.message)
   }
-  alert('See ya next time')
+
   return undefined
 }
