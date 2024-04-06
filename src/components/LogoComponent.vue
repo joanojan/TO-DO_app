@@ -1,3 +1,5 @@
 <template>
-    <img class="w-20" src="@/assets/logo.png" alt="logo">
+    <h1 class="text-3xl">
+        &#128509; <!-- Emoji: Liberty tower -->
+    </h1>
 </template>

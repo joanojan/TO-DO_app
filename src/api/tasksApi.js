@@ -9,3 +9,16 @@ export const fetchAllTasks = async () => {
 
   return data
 }
+
+export const addTask = async (userId, taskTitle) => {
+  const { error } = await supabase.from('tasks').insert(
+    {
+      user_id: userId,
+      title: taskTitle
+    }
+  )
+
+  if (error) {
+    throw new Error(error.message)
+  }
+}
