@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
+import ButtonComponent from '@/components/ButtonComponent.vue';
+import SignUpPrompt from '@/components/SignUpPrompt.vue';
 
 const router = useRouter()
 
@@ -11,8 +13,13 @@ const user = ref('')
 const password = ref('')
 
 const signIn = async () => {
-	await userStore.signIn(user.value, password.value)
-	router.push({ name: 'home' })
+	try {
+		await userStore.signIn(user.value, password.value)
+		router.push({ name: 'home' })
+	} catch (error) {
+		console.error(error)
+		alert('signIn error')
+	}
 }
 
 const signUp = () => {
@@ -23,21 +30,31 @@ const signUp = () => {
 
 <template>
 	<main>
-		<h1>Sign In View!</h1>
-		<form>
-			<label>
-				User:
-				<input autocomplete="off" type="text" v-model="user" />
-			</label>
-			<label>
-				Password:
-				<input type="password" v-model="password" />
-			</label>
-		</form>
+		<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 
-		<button @click="signIn">Sign In</button>
-		<button @click="signUp">Sing Up</button>
+			<form @submit.prevent="signIn">
+				<div class="mb-4">
+					<label for="email" class="block my-2 text-sm font-medium leading-6 text-gray-900">Email address</label>
+					<input type="email" id="email" v-model="user" placeholder="Email"
+						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
+				</div>
+				<div class="mb-4">
+					<label for="password" class="block text-sm font-medium leading-6 my-2 text-gray-900">Password</label>
+					<input type="password" id="password" v-model="password" placeholder="Password"
+						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+				</div>
+				<ButtonComponent type="submit"
+					class="w-full bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
+					Sign In
+				</ButtonComponent>
+				<div v-if="userStore.error" class="text-red-500 text-sm mt-2">
+					{{ userStore.error.message }}
+				</div>
+			</form>
+
+			<SignUpPrompt @click="signUp" />
+
+		</div>
+
 	</main>
 </template>
-
-<style scoped></style>

@@ -6,48 +6,31 @@ export const useUserStore = defineStore('user', () => {
   // State
   const user = ref(undefined)
 
+  const error = ref(undefined)
+
   // Getters
 
-  // Actions
+  // Actions -> Errors to be handled by the views/components
   async function fetchUser() {
-    try {
-      user.value = await fetchActualUser()
-    } catch (error) {
-      if (error.code === '401') {
-        user.value = null
-        return
-      }
-    }
+    user.value = await fetchActualUser()
   }
 
   async function signUp(email, password) {
-    try {
-      user.value = await createNewUser(email, password)
-
-    } catch (error) {
-      console.error(error)
-    }
+    user.value = await createNewUser(email, password)
   }
 
   async function signIn(email, password) {
-    try {
-      user.value = await logIn(email, password)
-    } catch (error) {
-      console.error(error)
-    }
+    user.value = await logIn(email, password)
   }
 
   async function signOut() {
-    try {
-      user.value = await logOut()
-    } catch (error) {
-      console.error(error)
-    }
+    user.value = await logOut()
   }
 
   return {
     // State
     user,
+    error,
     // Getters
     // Actions
     fetchUser,

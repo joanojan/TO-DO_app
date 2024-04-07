@@ -3,7 +3,10 @@
 
 <template>
 	<main>
-		<h1>About View!</h1>
+		<h1 class="bg-gray-500 text-white text-center">IRON HACK FINAL PROJECT</h1>
+		<section>
+			
+		</section>
 	</main>
 </template>
 

@@ -1,7 +1,10 @@
 import { supabase } from '@/api/supabase'
 
 export const fetchActualUser = async () => {
-  const { data } = await supabase.auth.getSession()
+  const { data, error } = await supabase.auth.getSession()
+  if(error){ 
+    throw error
+  }
   return data?.session?.user || null
 }
 
@@ -22,33 +25,19 @@ export const logIn = async (email, password) => {
     error
   } = await supabase.auth.signInWithPassword({ email, password })
 
-  switch (error) {
-    case '404':
-      alert('This user does not exist')
-      break
-    case '403':
-      alert('unauthorized, please contact admin@admin.com')
-      break
-    case '429':
-      alert('There is an issue with too many request, sorry.')
-      break
-    default:
-      console.log(error)
-      alert('Unknown error: please try again')
+  if (error) {
+    throw new Error(error.message)
   }
 
-  if(!error) {
-    alert('Yay - sign in success')
-    return user
-  }
+  return user
 }
 
 export const logOut = async () => {
-    const { error } = await supabase.auth.signOut()
+  const { error } = await supabase.auth.signOut()
 
-    if (error) {
-      throw new Error(error.message)
-    }
-    alert('See ya next time')
-    return undefined
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return undefined
 }
