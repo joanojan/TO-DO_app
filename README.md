@@ -1,35 +1,23 @@
-# ih-todo-list
+IRON HACK BOOTCAMP - FRONT END DEVELOPMENT WITH VUE:
 
-This template should help get you started developing with Vue 3 in Vite.
+----------- Final project: TO-DO App --------------
 
-## Recommended IDE Setup
+Description: 
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+    Single Page Application (SPA) of the classic TO-DO:
+     : users can sing-up, sign-in, sign-out
+     : CRUD -> create, read, update and delete tasks. 
 
-## Customize configuration
+    Backend support with supabase (the open source alternative to Firebase)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+    Frontend: 
 
-## Project Setup
+        - Framework: Vue3
+        - Build tool: Vite
+        - Routing: Vue Router
+        - State managment: Pinia
+        - CSS framework: Tailwind
+        - Live website: Netlify (check the link below)
 
-```sh
-npm install
-```
 
-### Compile and Hot-Reload for Development
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
