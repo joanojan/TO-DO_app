@@ -45,7 +45,8 @@ const signUp = () => {
 				</div>
 				<ButtonComponent type="submit"
 					class="w-full bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
-					Sign In</ButtonComponent>
+					Sign In
+				</ButtonComponent>
 				<div v-if="userStore.error" class="text-red-500 text-sm mt-2">
 					{{ userStore.error.message }}
 				</div>
