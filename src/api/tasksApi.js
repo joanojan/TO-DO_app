@@ -22,3 +22,7 @@ export const addTask = async (userId, taskTitle) => {
     throw new Error(error.message)
   }
 }
+
+export const editTask = async () => {
+  
+}
