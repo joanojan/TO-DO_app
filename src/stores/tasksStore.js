@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { fetchAllTasks } from '@/api/tasksApi'
-import { addTask } from '@/api/tasksApi'
+import { addTask, editTask } from '@/api/tasksApi'
 
 export const useTasksStore = defineStore('tasks', () => {
   // State
@@ -27,6 +27,12 @@ export const useTasksStore = defineStore('tasks', () => {
       await fetchTasks()
   }
 
+  async function editATask(newTitle) {
+    await editTask(newTitle)
+    await fetchTasks()
+  }
+
+
   return {
     // State
     tasks,
@@ -35,5 +41,6 @@ export const useTasksStore = defineStore('tasks', () => {
     // Actions
     fetchTasks,
     addNewTask,
+    editATask,
   }
 })
