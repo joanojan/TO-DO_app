@@ -23,6 +23,13 @@ export const addTask = async (userId, taskTitle) => {
   }
 }
 
-export const editTask = async () => {
-  
+export const editTask = async (newTitle) => {
+  const { error } = await supabase
+  .from('tasks')
+  .update({ title: newTitle })
+  .eq('id', 1)
+
+  if (error) {
+    throw new Error(error.message)
+  }
 }
