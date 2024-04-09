@@ -3,12 +3,21 @@ import { useTasksStore } from '@/stores/tasksStore'
 import { storeToRefs } from 'pinia'
 import UserComponent from '@/components/UserComponent.vue'
 import AddTask from '@/components/AddTask.vue'
+import ButtonComponent from '@/components/ButtonComponent.vue'
+import { ref } from 'vue'
+import EditTaskComponent from '@/components/EditTaskComponent.vue'
 
 const tasksStore = useTasksStore()
 
 tasksStore.fetchTasks()
 
 const { tasks, isLoading } = storeToRefs(tasksStore)
+
+const editMode = ref(false)
+
+async function edit() {
+	editMode.value = true
+}
 
 </script>
 <template>
@@ -21,12 +30,16 @@ const { tasks, isLoading } = storeToRefs(tasksStore)
 		<ul v-else>
 			<li v-for="task in tasks" :key="task.id" class="flex justify-between">
 				{{ task.title }}
-				<span class="inline-block w-44 text-left px-2 py-1 m-2" :class="{
-					'bg-green-500 text-white': task.is_complete,
-					'bg-red-500 text-white': !task.is_complete
-				}">
-					{{ task.is_complete ? 'Completed' : 'Not Completed' }}
-				</span>
+				<div>
+					<EditTaskComponent v-if="editMode" :id="task.id"/>
+					<button-component @click="edit">Edit Task</button-component>
+					<span class="inline-block w-26 text-left px-2 py-1 m-2" :class="{
+						'bg-green-500 text-white': task.is_complete,
+						'bg-red-500 text-white': !task.is_complete
+					}">
+						{{ task.is_complete ? 'Completed' : 'Not Completed' }}
+					</span>
+				</div>
 			</li>
 		</ul>
 		<add-task />
