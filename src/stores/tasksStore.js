@@ -27,8 +27,8 @@ export const useTasksStore = defineStore('tasks', () => {
       await fetchTasks()
   }
 
-  async function editATask(newTitle) {
-    await editTask(newTitle)
+  async function editATask(taskId, newTitle) {
+    await editTask(taskId, newTitle)
     await fetchTasks()
   }
 
