@@ -32,15 +32,18 @@ const props = defineProps({
 const filteredTasks = tasks.value.filter(task => task.is_complete === props.completed)
 </script>
 <template>
-    <h1 :class="{
+    <h1 class="p-2 font-bold text-lg"
+        :class="{
         'bg-green-500 text-white': completed,
         'bg-red-500 text-white': !completed }">
         {{ completed ? 'Completed tasks' : 'Pending tasks' }}
     </h1>
     <ul>
         <li v-for="task in filteredTasks" :key="task.id">
-            <div>
-                {{ task.title }}
+            <div class="flex-col border-slate-500 border-2">
+                <h3 class="text-xl px-4">
+                    {{ task.title }}
+                </h3>
                 <button-component @click="openEditModal(task.id)">Edit Task</button-component>
                 <button-component v-if="!completed" @click="markTaskAsCompleted(task.id)">Mark as completed</button-component>
                 <button-component v-if="completed" @click="markTaskAsPending(task.id)">Mark as pending</button-component>
