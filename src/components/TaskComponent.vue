@@ -26,6 +26,10 @@ const markTaskAsPending = (taskId) => {
     tasksStore.markPendingTask(taskId)
 }
 
+const deleteTask = (taskId) => {
+    tasksStore.deleteATask(taskId)
+}
+
 const props = defineProps({
     completed: Boolean,
 })
@@ -47,6 +51,7 @@ const filteredTasks = tasks.value.filter(task => task.is_complete === props.comp
                 <button-component @click="openEditModal(task.id)">Edit Task</button-component>
                 <button-component v-if="!completed" @click="markTaskAsCompleted(task.id)">Mark as completed</button-component>
                 <button-component v-if="completed" @click="markTaskAsPending(task.id)">Mark as pending</button-component>
+                <button-component @click="deleteTask(task.id)">Delete</button-component>
             </div>
         </li>
     </ul>
