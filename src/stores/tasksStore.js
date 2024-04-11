@@ -37,7 +37,7 @@ export const useTasksStore = defineStore('tasks', () => {
     await fetchTasks()
   }
 
-  async function markNotCompletedTask(taskId) {
+  async function markPendingTask(taskId) {
     await markAsNotCompleted(taskId)
     await fetchTasks()
   }
@@ -51,6 +51,6 @@ export const useTasksStore = defineStore('tasks', () => {
     addNewTask,
     editATask,
     markCompletedTask,
-    markNotCompletedTask
+    markPendingTask
   }
 })
