@@ -1,32 +1,16 @@
 <script setup>
 import { useTasksStore } from '@/stores/tasksStore'
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
 import UserComponent from '@/components/UserComponent.vue'
-import ButtonComponent from '@/components/ButtonComponent.vue'
 import AddTask from '@/components/AddTaskComponent.vue'
-import EditTaskModalComponent from '@/components/EditTaskModalComponent.vue'
+import TaskComponent from '@/components/TaskComponent.vue'
 
 const tasksStore = useTasksStore()
 
 //this is making unecessary calls!
 tasksStore.fetchTasks()
 
-const selectedTaskId = ref(null)
-
-const { tasks, isLoading } = storeToRefs(tasksStore)
-
-const openEditModal = (taskId) => {
-	selectedTaskId.value = taskId	
-}
-
-const closeEditModal = () => {
-	selectedTaskId.value = null;
-}
-
-const markTaskAsCompleted = (taskId) => {
-	tasksStore.markCompletedTask(taskId)
-}
+const { isLoading } = storeToRefs(tasksStore)
 
 </script>
 <template>
@@ -36,45 +20,10 @@ const markTaskAsCompleted = (taskId) => {
 			<h1 class="text-xl p-2 bg-black my-2 text-center text-white">Your tasks: </h1>
 		</header>
 		<div v-if="isLoading">Loading tasks ... </div>
-		<div v-else>
-			<section>
-				<h1 class="bg-sky-500 text-white">Pending Tasks:</h1>
-				<ul>
-					<li v-for="task in tasks" :key="task.id">
-						<div v-if="!task.is_complete">
-							{{ task.title }}
-						</div>
-					</li>
-				</ul>
-			</section>
-			<section>
-				<h1 class="bg-green-500 text-white">Completed Tasks:</h1>
-				<ul>
-					<li v-for="task in tasks" :key="task.id">
-						<div v-if="task.is_complete">
-							{{ task.title }}
-						</div>
-					</li>
-				</ul>
-			</section>
-		</div>
-
-		<ul>
-			<li v-for="task in tasks" :key="task.id" class="flex justify-between">
-					{{ task.title }}
-				<div>
-					<button-component @click="openEditModal(task.id)">Edit Task</button-component>
-					<button-component @click="markTaskAsCompleted(task.id)">Mark as completed</button-component>
-					<span class="inline-block w-26 text-left px-2 py-1 m-2" :class="{
-						'bg-green-500 text-white': task.is_complete,
-						'bg-red-500 text-white': !task.is_complete
-					}">
-						{{ task.is_complete ? 'Completed' : 'Not Completed' }}
-					</span>
-				</div>
-			</li>
-		</ul>
-		<EditTaskModalComponent v-if="selectedTaskId" :taskId="selectedTaskId" @close="closeEditModal"/>
+		<section v-else>
+			<TaskComponent :completed="false" />
+			<TaskComponent :completed="true" />
+		</section>
 		<add-task />
 	</main>
 </template>
