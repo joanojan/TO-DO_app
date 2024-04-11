@@ -26,7 +26,7 @@ async function addTask() {
 </template> -->
 
 <template>
-    <div class="flex items-center mb-4">
+    <div class="flex items-center mb-4 mt-4 max-w-xl">
       <label for="newTask" class="sr-only">Enter new task</label>
       <input
         type="text"
