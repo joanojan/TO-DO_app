@@ -25,7 +25,7 @@ const closeEditModal = () => {
 }
 
 const markTaskAsCompleted = (taskId) => {
-	tasks.value.markComlpetedTask(taskId)
+	tasksStore.markCompletedTask(taskId)
 }
 
 </script>
@@ -36,9 +36,32 @@ const markTaskAsCompleted = (taskId) => {
 			<h1 class="text-xl p-2 bg-black my-2 text-center text-white">Your tasks: </h1>
 		</header>
 		<div v-if="isLoading">Loading tasks ... </div>
-		<ul v-else>
+		<div v-else>
+			<section>
+				<h1 class="bg-sky-500 text-white">Pending Tasks:</h1>
+				<ul>
+					<li v-for="task in tasks" :key="task.id">
+						<div v-if="!task.is_complete">
+							{{ task.title }}
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h1 class="bg-green-500 text-white">Completed Tasks:</h1>
+				<ul>
+					<li v-for="task in tasks" :key="task.id">
+						<div v-if="task.is_complete">
+							{{ task.title }}
+						</div>
+					</li>
+				</ul>
+			</section>
+		</div>
+
+		<ul>
 			<li v-for="task in tasks" :key="task.id" class="flex justify-between">
-				{{ task.title }}
+					{{ task.title }}
 				<div>
 					<button-component @click="openEditModal(task.id)">Edit Task</button-component>
 					<button-component @click="markTaskAsCompleted(task.id)">Mark as completed</button-component>
