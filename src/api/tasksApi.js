@@ -11,12 +11,10 @@ export const fetchAllTasks = async () => {
 }
 
 export const addTask = async (userId, taskTitle) => {
-  const { error } = await supabase.from('tasks').insert(
-    {
-      user_id: userId,
-      title: taskTitle
-    }
-  )
+  const { error } = await supabase.from('tasks').insert({
+    user_id: userId,
+    title: taskTitle
+  })
 
   if (error) {
     throw new Error(error.message)
@@ -25,9 +23,9 @@ export const addTask = async (userId, taskTitle) => {
 
 export const editTask = async (taskId, newTitle) => {
   const { error } = await supabase
-  .from('tasks')
-  .update({ title: newTitle })
-  .eq('id', String(taskId))
+    .from('tasks')
+    .update({ title: newTitle })
+    .eq('id', String(taskId))
 
   if (error) {
     throw new Error(error.message)
@@ -36,9 +34,9 @@ export const editTask = async (taskId, newTitle) => {
 
 export const markAsCompleted = async (taskId) => {
   const { error } = await supabase
-  .from('tasks')
-  .update({ is_complete: true })
-  .eq('id', String(taskId))
+    .from('tasks')
+    .update({ is_complete: true })
+    .eq('id', String(taskId))
 
   if (error) {
     throw new Error(error.message)
@@ -47,11 +45,22 @@ export const markAsCompleted = async (taskId) => {
 
 export const markAsNotCompleted = async (taskId) => {
   const { error } = await supabase
-  .from('tasks')
-  .update({ is_complete: false })
-  .eq('id', String(taskId))
+    .from('tasks')
+    .update({ is_complete: false })
+    .eq('id', String(taskId))
 
   if (error) {
     throw new Error(error.message)
   }
+}
+
+export const deleteTask = async (taskId) => {
+  const { error } = await supabase
+    .from('tasks')
+    .delete()
+    .eq('id', String(taskId))
+
+    if (error) {
+      throw new Error(error.message)
+    }
 }
