@@ -1,25 +1,30 @@
 <script setup>
 import { useTasksStore } from '@/stores/tasksStore'
-import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import EditTaskModalComponent from '@/components/EditTaskModalComponent.vue'
 
+const props = defineProps({
+    completed: Boolean
+})
+
 const tasksStore = useTasksStore()
+
+//To pass the task id to the Edit task modal
 const selectedTaskId = ref(null)
 
-const { tasks } = storeToRefs(tasksStore)
+const tasks = ref(tasksStore.tasks)
 
 const openEditModal = (taskId) => {
-	selectedTaskId.value = taskId	
+    selectedTaskId.value = taskId
 }
 
 const closeEditModal = () => {
-	selectedTaskId.value = null;
+    selectedTaskId.value = null;
 }
 
 const markTaskAsCompleted = (taskId) => {
-	tasksStore.markCompletedTask(taskId)
+    tasksStore.markCompletedTask(taskId)
 }
 
 const markTaskAsPending = (taskId) => {
@@ -30,18 +35,18 @@ const deleteTask = (taskId) => {
     tasksStore.deleteATask(taskId)
 }
 
-const props = defineProps({
-    completed: Boolean,
+const filteredTasks = computed(() => {
+    return tasks.value.filter(task => task.is_complete === props.completed)
 })
-const filteredTasks = tasks.value.filter(task => task.is_complete === props.completed)
 </script>
 <template>
-    <h1 class="p-2 font-bold text-lg"
-        :class="{
+    <h1 class="p-2 font-bold text-lg" :class="{
         'bg-green-500 text-white': completed,
-        'bg-red-500 text-white': !completed }">
+        'bg-red-500 text-white': !completed
+    }">
         {{ completed ? 'Completed tasks' : 'Pending tasks' }}
     </h1>
+
     <ul>
         <li v-for="task in filteredTasks" :key="task.id">
             <div class="flex-col border-slate-500 border-2">
@@ -49,8 +54,10 @@ const filteredTasks = tasks.value.filter(task => task.is_complete === props.comp
                     {{ task.title }}
                 </h3>
                 <button-component @click="openEditModal(task.id)">Edit Task</button-component>
-                <button-component v-if="!completed" @click="markTaskAsCompleted(task.id)">Mark as completed</button-component>
-                <button-component v-if="completed" @click="markTaskAsPending(task.id)">Mark as pending</button-component>
+                <button-component v-if="!completed" @click="markTaskAsCompleted(task.id)">Mark as
+                    completed</button-component>
+                <button-component v-if="completed" @click="markTaskAsPending(task.id)">Mark as
+                    pending</button-component>
                 <button-component @click="deleteTask(task.id)">Delete</button-component>
             </div>
         </li>

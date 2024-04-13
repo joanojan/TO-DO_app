@@ -1,16 +1,21 @@
 <script setup>
-import { useTasksStore } from '@/stores/tasksStore'
-import { storeToRefs } from 'pinia'
 import UserComponent from '@/components/UserComponent.vue'
 import AddTask from '@/components/AddTaskComponent.vue'
 import TaskComponent from '@/components/TaskComponent.vue'
+import { onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useTasksStore } from '@/stores/tasksStore'
 
 const tasksStore = useTasksStore()
 
-//this is making unecessary calls!
-tasksStore.fetchTasks()
+const { tasks, isLoading } = storeToRefs(tasksStore)
 
-const { isLoading } = storeToRefs(tasksStore)
+onMounted(async () => {
+	if (tasks.value.length) {
+		return
+	}
+	await tasksStore.fetchTasks()
+})
 
 </script>
 <template>

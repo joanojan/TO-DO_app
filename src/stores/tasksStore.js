@@ -8,8 +8,6 @@ export const useTasksStore = defineStore('tasks', () => {
   const tasks = ref([])
   const isLoading = ref(false)
 
-  // Getters
-
   // Actions
   async function fetchTasks() {
     try {
@@ -23,34 +21,45 @@ export const useTasksStore = defineStore('tasks', () => {
   }
 
   async function addNewTask(userId, title) {
-      await addTask(userId, title)  
-      await fetchTasks()
+      const newTask = await addTask(userId, title)  
+      tasks.value.push(newTask)
   }
 
   async function editATask(taskId, newTitle) {
-    await editTask(taskId, newTitle)
-    await fetchTasks()
+    const updatedTask = await editTask(taskId, newTitle)
+    const index = tasks.value.findIndex(t => t.id === updatedTask.id)
+
+    if (index !== -1) {
+      tasks.value[index] = updatedTask
+    }
   }
 
   async function markCompletedTask(taskId) {
-    await markAsCompleted(taskId)
-    await fetchTasks()
+    const updatedTask = await markAsCompleted(taskId)
+    const index = tasks.value.findIndex(t => t.id === updatedTask.id)
+
+    if (index !== -1) {
+      tasks.value[index] = updatedTask
+    }    
   }
 
   async function markPendingTask(taskId) {
-    await markAsNotCompleted(taskId)
-    await fetchTasks()
+    const updatedTask = await markAsNotCompleted(taskId)
+    const index = tasks.value.findIndex(t => t.id === updatedTask.id)
+
+    if (index !== -1) {
+      tasks.value[index] = updatedTask
+    }
   }
 
   async function deleteATask(taskId) {
     await deleteTask(taskId)
-    await fetchTasks()
+    tasks.value = tasks.value.filter(task => task.id !== taskId)
   }
   return {
     // State
     tasks,
     isLoading,
-    // Getters
     // Actions
     fetchTasks,
     addNewTask,

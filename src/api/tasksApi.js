@@ -11,56 +11,70 @@ export const fetchAllTasks = async () => {
 }
 
 export const addTask = async (userId, taskTitle) => {
-  const { error } = await supabase.from('tasks').insert({
+  const { data, error } = await supabase.from('tasks').insert({
     user_id: userId,
     title: taskTitle
-  })
+  }).select()
 
   if (error) {
     throw new Error(error.message)
   }
+
+  return data[0]
 }
 
 export const editTask = async (taskId, newTitle) => {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from('tasks')
     .update({ title: newTitle })
     .eq('id', String(taskId))
+    .select()
 
   if (error) {
     throw new Error(error.message)
   }
+
+  return data[0]
 }
 
 export const markAsCompleted = async (taskId) => {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from('tasks')
     .update({ is_complete: true })
     .eq('id', String(taskId))
+    .select()
 
   if (error) {
     throw new Error(error.message)
   }
+
+  return data[0]
 }
 
 export const markAsNotCompleted = async (taskId) => {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from('tasks')
     .update({ is_complete: false })
     .eq('id', String(taskId))
+    .select()
 
   if (error) {
     throw new Error(error.message)
   }
+
+  return data[0]
 }
 
 export const deleteTask = async (taskId) => {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from('tasks')
     .delete()
     .eq('id', String(taskId))
+    .select()
 
     if (error) {
       throw new Error(error.message)
     }
+
+    return data[0]
 }
