@@ -12,6 +12,7 @@ const newTask = ref('')
 async function addTask() {
     try {
         tasksStore.addNewTask(userStore.user.id, newTask.value)
+        newTask.value = ''
     } catch (error) {
         alert('error trying to add task --> ', error)
     }
