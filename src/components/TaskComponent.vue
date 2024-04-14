@@ -14,6 +14,7 @@ const tasksStore = useTasksStore()
 const selectedTaskId = ref(null)
 
 const tasks = ref(tasksStore.tasks)
+const loading = ref(tasksStore.isLoading)
 
 const openEditModal = (taskId) => {
     selectedTaskId.value = taskId
@@ -49,7 +50,8 @@ const filteredTasks = computed(() => {
 
     <ul>
         <li v-for="task in filteredTasks" :key="task.id">
-            <div class="flex-col border-slate-500 border-2">
+            <div v-if="loading">Loading ...</div>
+            <div v-else class="flex-col border-slate-500 border-2">
                 <h3 class="text-xl px-4">
                     {{ task.title }}
                 </h3>

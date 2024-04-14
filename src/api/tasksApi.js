@@ -66,15 +66,12 @@ export const markAsNotCompleted = async (taskId) => {
 }
 
 export const deleteTask = async (taskId) => {
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('tasks')
     .delete()
     .eq('id', String(taskId))
-    .select()
 
     if (error) {
       throw new Error(error.message)
     }
-
-    return data[0]
 }
