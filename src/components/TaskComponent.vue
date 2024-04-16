@@ -3,6 +3,7 @@ import { useTasksStore } from '@/stores/tasksStore'
 import { ref, computed } from 'vue'
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import EditTaskModalComponent from '@/components/EditTaskModalComponent.vue'
+import { storeToRefs } from 'pinia';
 
 const props = defineProps({
     completed: Boolean
@@ -12,9 +13,7 @@ const tasksStore = useTasksStore()
 
 //To pass the task id to the Edit task modal
 const selectedTaskId = ref(null)
-
-const tasks = ref(tasksStore.tasks)
-const loading = ref(tasksStore.isLoading)
+const { loading, tasks } = storeToRefs(tasksStore)
 
 const openEditModal = (taskId) => {
     selectedTaskId.value = taskId

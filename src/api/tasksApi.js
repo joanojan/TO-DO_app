@@ -69,7 +69,7 @@ export const deleteTask = async (taskId) => {
   const { error } = await supabase
     .from('tasks')
     .delete()
-    .eq('id', String(taskId))
+    .eq('id', taskId)
 
     if (error) {
       throw new Error(error.message)

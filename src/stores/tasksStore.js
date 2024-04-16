@@ -53,8 +53,12 @@ export const useTasksStore = defineStore('tasks', () => {
   }
 
   async function deleteATask(taskId) {
-    await deleteTask(taskId)
-    tasks.value = tasks.value.filter(task => task.id !== taskId)
+    try {
+      await deleteTask(taskId)
+      tasks.value = tasks.value.filter(task => task.id !== taskId)
+    } catch(err) {
+      console.log(err)
+    }
   }
   return {
     // State
