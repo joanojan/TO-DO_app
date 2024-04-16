@@ -11,9 +11,13 @@ const newTask = ref('')
 
 async function addTask() {
     try {
-        await tasksStore.addNewTask(userStore.user.id, newTask.value)
-        newTask.value = ''
-        alert('success on adding the task!')
+        if(newTask.value.length < 4){
+          alert('Minimum length is 4 letters')
+        } else {
+          await tasksStore.addNewTask(userStore.user.id, newTask.value)
+          newTask.value = ''
+          alert('success on adding the task!')
+        }
     } catch (error) {
         alert('error trying to add task --> ', error)
     }
