@@ -18,13 +18,14 @@ const task = ref(tasks.value.find((task) => task.id === props.taskId))
 
 const taskTitle = ref(task.value.title)
 
-const updateTask = () => {
-  if (!taskTitle.value) { alert('Please give a title') }
+const updateTask = async () => {
+  if (taskTitle.value.length < 4) { alert('Please give a title (Min 4 letters)') }
   else {
     try {
-      tasksStore.editATask(props.taskId, taskTitle.value)
+      await tasksStore.editATask(props.taskId, taskTitle.value)
+      alert('edited successfully!')
     } catch (error) {
-      console.error(error)
+      alert('error on edit task --> ', error)
     } finally {
       emits('close')
     }

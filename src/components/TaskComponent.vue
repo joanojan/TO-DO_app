@@ -23,16 +23,28 @@ const closeEditModal = () => {
     selectedTaskId.value = null;
 }
 
-const markTaskAsCompleted = (taskId) => {
-    tasksStore.markCompletedTask(taskId)
+const markTaskAsCompleted = async (taskId) => {
+    try {
+        tasksStore.markCompletedTask(taskId)
+    } catch (error) {
+        alert('Mark as complete Error: ', error)
+    }
 }
 
-const markTaskAsPending = (taskId) => {
-    tasksStore.markPendingTask(taskId)
+const markTaskAsPending = async (taskId) => {
+    try {
+        tasksStore.markPendingTask(taskId)
+    } catch (error) {
+        alert('Mark as pending Error: ', error)
+    }
 }
 
-const deleteTask = (taskId) => {
-    tasksStore.deleteATask(taskId)
+const deleteTask = async (taskId) => {
+    try {
+        await tasksStore.deleteATask(taskId)
+    } catch (error) {
+        alert('Error deleting: ', error)
+    }
 }
 
 const filteredTasks = computed(() => {
@@ -48,9 +60,9 @@ const filteredTasks = computed(() => {
     </h1>
 
     <ul>
-        <li v-for="task in filteredTasks" :key="task.id">
-            <div v-if="loading">Loading ...</div>
-            <div v-else class="flex-col border-slate-500 border-2">
+        <div v-if="loading">Loading ...</div>
+        <div v-else class="flex-col border-slate-500 border-2">
+            <li v-for="task in filteredTasks" :key="task.id">
                 <h3 class="text-xl px-4">
                     {{ task.title }}
                 </h3>
@@ -60,8 +72,8 @@ const filteredTasks = computed(() => {
                 <button-component v-if="completed" @click="markTaskAsPending(task.id)">Mark as
                     pending</button-component>
                 <button-component @click="deleteTask(task.id)">Delete</button-component>
-            </div>
-        </li>
+            </li>
+        </div>
     </ul>
     <EditTaskModalComponent v-if="selectedTaskId" :taskId="selectedTaskId" @close="closeEditModal" />
 </template>
