@@ -23,16 +23,20 @@ const closeEditModal = () => {
     selectedTaskId.value = null;
 }
 
-const markTaskAsCompleted = (taskId) => {
+const markTaskAsCompleted = async (taskId) => {
     tasksStore.markCompletedTask(taskId)
 }
 
-const markTaskAsPending = (taskId) => {
+const markTaskAsPending = async (taskId) => {
     tasksStore.markPendingTask(taskId)
 }
 
-const deleteTask = (taskId) => {
-    tasksStore.deleteATask(taskId)
+const deleteTask = async (taskId) => {
+    try {
+        await tasksStore.deleteATask(taskId)
+    } catch (error) {
+        alert('There was an error --> ', error)
+    }
 }
 
 const filteredTasks = computed(() => {
