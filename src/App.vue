@@ -4,7 +4,7 @@ import HeaderComponent from '@/components/HeaderComponent.vue'
 </script>
 
 <template>
-		<header-component v-if="($route.name !== 'signin' && $route.name !== 'signup')"/>
+		<header-component />
 		<router-view />
 </template>
  

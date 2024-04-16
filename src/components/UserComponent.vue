@@ -4,5 +4,5 @@ const userStore = useUserStore()
 const user = userStore.user
 </script>
 <template>
-    <p>user: {{ user.email }}</p>
+    <p>{{ user.email }}</p>
 </template>

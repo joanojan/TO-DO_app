@@ -1,5 +1,4 @@
 <script setup>
-import UserComponent from '@/components/UserComponent.vue'
 import AddTask from '@/components/AddTaskComponent.vue'
 import TaskComponent from '@/components/TaskComponent.vue'
 import { onMounted } from 'vue'
@@ -16,14 +15,11 @@ onMounted(async () => {
 	}
 	await tasksStore.fetchTasks()
 })
-
 </script>
+
 <template>
-	<main class="max-w-screen-sm mx-auto mt-5">
-		<header class="flex-col">
-			<user-component class="text-xl p-2 bg-gray-500 text-white text-center" />
-			<h1 class="text-xl p-2 bg-black my-2 text-center text-white">Your tasks: </h1>
-		</header>
+	<main class="mt-10 max-w-screen-sm mx-auto mt-5">
+		<h1 class="text-xl p-2 bg-black my-2 text-center text-white">Your tasks: </h1>
 		<div v-if="isLoading">Loading tasks ... </div>
 		<section v-else>
 			<TaskComponent :completed="false" />
