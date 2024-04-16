@@ -28,8 +28,8 @@ const signUp = () => {
 </script>
 
 <template>
-	<main>
-		<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+	<main class="flex justify-center">
+		<div class="mt-40 sm:w-full sm:max-w-sm">
 
 			<form @submit.prevent="signIn">
 				<div class="mb-4">
