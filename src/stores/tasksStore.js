@@ -1,14 +1,12 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { fetchAllTasks } from '@/api/tasksApi'
-import { addTask, editTask } from '@/api/tasksApi'
+import { fetchAllTasks, markAsCompleted, markAsNotCompleted } from '@/api/tasksApi'
+import { addTask, editTask, deleteTask } from '@/api/tasksApi'
 
 export const useTasksStore = defineStore('tasks', () => {
   // State
   const tasks = ref([])
   const isLoading = ref(false)
-
-  // Getters
 
   // Actions
   async function fetchTasks() {
@@ -23,24 +21,55 @@ export const useTasksStore = defineStore('tasks', () => {
   }
 
   async function addNewTask(userId, title) {
-      await addTask(userId, title)  
-      await fetchTasks()
+      const newTask = await addTask(userId, title)  
+      tasks.value.push(newTask)
   }
 
-  async function editATask(newTitle) {
-    await editTask(newTitle)
-    await fetchTasks()
+  async function editATask(taskId, newTitle) {
+    const updatedTask = await editTask(taskId, newTitle)
+    const index = tasks.value.findIndex(t => t.id === updatedTask.id)
+
+    if (index !== -1) {
+      tasks.value[index] = updatedTask
+    }
   }
 
+  async function markCompletedTask(taskId) {
+    const updatedTask = await markAsCompleted(taskId)
+    const index = tasks.value.findIndex(t => t.id === updatedTask.id)
 
+    if (index !== -1) {
+      tasks.value[index] = updatedTask
+    }    
+  }
+
+  async function markPendingTask(taskId) {
+    const updatedTask = await markAsNotCompleted(taskId)
+    const index = tasks.value.findIndex(t => t.id === updatedTask.id)
+
+    if (index !== -1) {
+      tasks.value[index] = updatedTask
+    }
+  }
+
+  async function deleteATask(taskId) {
+    try {
+      await deleteTask(taskId)
+      tasks.value = tasks.value.filter(task => task.id !== taskId)
+    } catch(err) {
+      console.log(err)
+    }
+  }
   return {
     // State
     tasks,
     isLoading,
-    // Getters
     // Actions
     fetchTasks,
     addNewTask,
     editATask,
+    markCompletedTask,
+    markPendingTask,
+    deleteATask
   }
 })
