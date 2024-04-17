@@ -24,10 +24,16 @@ const handleMenuItemClick = (route) => {
     toggleDropdown()
     router.push(route)
 }
+
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('#dropdown')) {
+    isDropdownOpen.value = false;
+  }
+})
 </script>
 
 <template>
-    <div class="relative inline-block text-left">
+    <div id="dropdown" class="relative inline-block text-left">
         <div>
             <button
                 class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"

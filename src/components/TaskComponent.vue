@@ -65,7 +65,7 @@ const filteredTasks = computed(() => {
         <div v-else>
             <li v-for="task in filteredTasks" :key="task.id" class="my-2 flex-col border-slate-500 border-2">
                 <h3 class="text-xl px-4">
-                    {{ task.title }}
+                    Title: <span class="font-bold">{{ task.title }}</span>
                 </h3>
                 <button-component @click="openEditModal(task.id)">Edit Task</button-component>
                 <button-component v-if="!completed" @click="markTaskAsCompleted(task.id)">Mark as
