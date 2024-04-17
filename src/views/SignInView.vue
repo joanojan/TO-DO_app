@@ -18,6 +18,7 @@ const signIn = async () => {
 		router.push({ name: 'home' })
 	} catch (error) {
 		alert('signIn error')
+		console.log(error)
 	}
 }
 
