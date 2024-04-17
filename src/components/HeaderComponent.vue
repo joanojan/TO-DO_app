@@ -9,7 +9,7 @@ const userStore = useUserStore()
 const user = ref(userStore.user)
 
 watch(() => userStore.user, (newValue) => {
-  user.value = newValue
+	user.value = newValue
 })
 </script>
 
@@ -19,9 +19,7 @@ watch(() => userStore.user, (newValue) => {
 			<h1 class="text-xl font-bold text-center mb-4">
 				TO_DO <span class="text-xs text-gray-500">by J[Vi_Va}</span>
 			</h1>
-			<div class="flex" v-show="$route.path !== '/signin' && $route.path !== '/signup'">
-				<user-component v-if="user" />
-			</div>
+			<user-component v-if="user" />
 		</div>
 		<div class="flex items-center justify-between">
 			<LogoComponent />

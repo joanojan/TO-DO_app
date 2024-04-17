@@ -1,10 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 import ButtonComponent from "@/components/ButtonComponent.vue"
-
-const router = useRouter()
 
 const userStore = useUserStore()
 
@@ -16,10 +13,7 @@ const form = ref({
 const handleSubmit = async () => {
     try {
         await userStore.signUp(form.value.email, form.value.password)
-
-        router.push({
-            name: "confirmEmail",
-        });
+        alert("Please check your email to activate your account")
     } catch (error) {
         alert('signUp error --> ', error.message);
     }
