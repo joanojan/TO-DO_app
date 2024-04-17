@@ -23,8 +23,8 @@ watch(() => userStore.user, (newValue) => {
 				<user-component v-if="user" />
 			</div>
 		</div>
-		<nav class="flex items-center justify-between">
+		<div class="flex items-center justify-between">
 			<LogoComponent />
-		</nav>
+		</div>
 	</header>
 </template>

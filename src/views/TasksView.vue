@@ -19,7 +19,6 @@ onMounted(async () => {
 
 <template>
 	<main class="flex-col max-w-screen-sm mx-auto mt-5">
-		<h1 class="text-xl p-2 bg-black my-2 text-center text-white">Your tasks: </h1>
 		<div v-if="isLoading">Loading tasks ... </div>
 		<section v-else>
 			<TaskComponent :completed="false" />

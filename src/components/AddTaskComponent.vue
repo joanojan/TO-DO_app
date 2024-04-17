@@ -22,14 +22,7 @@ async function addTask() {
         alert('error trying to add task --> ', error)
     }
 }
-
 </script>
-<!-- <template>
-    <label for="addTask">Add Task</label>
-    <input type="text" name="addTask" v-model="newTask"
-        class="" />
-    <button-component @click="addTask">Submit</button-component>
-</template> -->
 
 <template>
     <div class="flex items-center mb-4 mt-4 max-w-xl">

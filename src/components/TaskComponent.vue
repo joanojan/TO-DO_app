@@ -51,6 +51,7 @@ const filteredTasks = computed(() => {
     return tasks.value.filter(task => task.is_complete === props.completed)
 })
 </script>
+
 <template>
     <h1 class="p-2 font-bold text-lg" :class="{
         'bg-green-500 text-white': completed,
