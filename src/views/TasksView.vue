@@ -4,6 +4,10 @@ import TaskComponent from '@/components/TaskComponent.vue'
 import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTasksStore } from '@/stores/tasksStore'
+import {useToast} from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-sugar.css'
+
+const $toast = useToast()
 
 const tasksStore = useTasksStore()
 
@@ -13,7 +17,11 @@ onMounted(async () => {
 	if (tasks.value.length) {
 		return
 	}
-	await tasksStore.fetchTasks()
+	try {
+		await tasksStore.fetchTasks()
+	} catch (error) {
+		$toast.success('You did it!');
+	}
 })
 </script>
 
