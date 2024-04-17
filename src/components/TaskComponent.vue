@@ -61,8 +61,8 @@ const filteredTasks = computed(() => {
 
     <ul>
         <div v-if="loading">Loading ...</div>
-        <div v-else class="flex-col border-slate-500 border-2">
-            <li v-for="task in filteredTasks" :key="task.id">
+        <div v-else>
+            <li v-for="task in filteredTasks" :key="task.id" class="my-2 flex-col border-slate-500 border-2">
                 <h3 class="text-xl px-4">
                     {{ task.title }}
                 </h3>

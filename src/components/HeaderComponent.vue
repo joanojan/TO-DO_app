@@ -1,17 +1,16 @@
 <script setup>
 import { useUserStore } from '@/stores/userStore'
-import { useRouter } from 'vue-router'
 import LogoComponent from '@/components/LogoComponent.vue';
 import UserComponent from '@/components/UserComponent.vue';
-
-const router = useRouter()
+import { ref, watch } from 'vue'
 
 const userStore = useUserStore()
 
-const signOut = () => {
-	userStore.signOut()
-	router.push({ name: 'signin' })
-}
+const user = ref(userStore.user)
+
+watch(() => userStore.user, (newValue) => {
+  user.value = newValue
+})
 </script>
 
 <template>
@@ -20,22 +19,12 @@ const signOut = () => {
 			<h1 class="text-xl font-bold text-center mb-4">
 				TO_DO <span class="text-xs text-gray-500">by J[Vi_Va}</span>
 			</h1>
-			<div class="flex"		
-				v-show="$route.path !== '/signin' && $route.path !== '/signup'">
-				<user-component />
-				<button @click="signOut">Sign-Out</button>
+			<div class="flex" v-show="$route.path !== '/signin' && $route.path !== '/signup'">
+				<user-component v-if="user" />
 			</div>
 		</div>
 		<nav class="flex items-center justify-between">
 			<LogoComponent />
-			<ul class="flex justify-end text-lg">
-				<li class="hover:text-blue-500 cursor-pointer px-4">
-					<RouterLink class="" to="/">Tasks</RouterLink>
-				</li>
-				<li class="hover:text-blue-500 cursor-pointer px-4">
-					<RouterLink to="/about">About</RouterLink>
-				</li>
-			</ul>
 		</nav>
 	</header>
 </template>

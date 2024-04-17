@@ -18,13 +18,13 @@ onMounted(async () => {
 </script>
 
 <template>
-	<main class="mt-10 max-w-screen-sm mx-auto mt-5">
+	<main class="flex-col max-w-screen-sm mx-auto mt-5">
 		<h1 class="text-xl p-2 bg-black my-2 text-center text-white">Your tasks: </h1>
 		<div v-if="isLoading">Loading tasks ... </div>
 		<section v-else>
 			<TaskComponent :completed="false" />
 			<TaskComponent :completed="true" />
 		</section>
-		<add-task />
+		<add-task class="mx-auto bg-black pl-2" />
 	</main>
 </template>
