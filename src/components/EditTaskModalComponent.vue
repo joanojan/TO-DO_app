@@ -13,14 +13,8 @@ const triggerToast = (message, type) => {
         message: message,
         type: type,
         position: 'top',
-        duration: 6000,
+        duration: 5000,
         dismissible: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: true,
-        showCloseButton: true,
-        closeOnClick: true,
-        closeButtonAriaLabel: 'Close'
     })
 }
 
@@ -97,8 +91,8 @@ const cancelEdit = () => {
               </div>
               <form>
                 <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                  <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Edit task</h3>
-                  <label for="title">Title</label>
+                  <h3 class="text-base font-semibold leading-6 text-gray-900 select-none" id="modal-title">Edit task</h3>
+                  <label class="select-none" for="title">Title</label>
                   <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" id="title" v-model="taskTitle" required />

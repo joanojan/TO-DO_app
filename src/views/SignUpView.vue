@@ -15,11 +15,6 @@ const triggerToast = (message) => {
         duration: 6000,
         dismissible: true,
         pauseOnHover: true,
-        draggable: true,
-        progress: true,
-        showCloseButton: true,
-        closeOnClick: true,
-        closeButtonAriaLabel: 'Close'
     })
 }
 
