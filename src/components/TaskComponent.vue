@@ -3,7 +3,27 @@ import { useTasksStore } from '@/stores/tasksStore'
 import { ref, computed } from 'vue'
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import EditTaskModalComponent from '@/components/EditTaskModalComponent.vue'
-import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia';import 'vue-toast-notification/dist/theme-bootstrap.css'
+import { useToast } from 'vue-toast-notification';
+
+const toast = useToast()
+
+const triggerToast = (message, type) => {
+    toast.open({
+        message: message,
+        type: type,
+        position: 'top',
+        duration: 6000,
+        dismissible: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: true,
+        showCloseButton: true,
+        closeOnClick: true,
+        closeButtonAriaLabel: 'Close'
+    })
+}
+
 
 const props = defineProps({
     completed: Boolean
@@ -26,24 +46,27 @@ const closeEditModal = () => {
 const markTaskAsCompleted = async (taskId) => {
     try {
         tasksStore.markCompletedTask(taskId)
+        triggerToast('Completed task!', 'success')
     } catch (error) {
-        alert('Mark as complete Error: ', error)
+        triggerToast('Error on Mark as Completed!', 'error')
     }
 }
 
 const markTaskAsPending = async (taskId) => {
     try {
         tasksStore.markPendingTask(taskId)
+        triggerToast('Pending task!', 'success')
     } catch (error) {
-        alert('Mark as pending Error: ', error)
+        triggerToast('Error on Mark as Pending!','error')
     }
 }
 
 const deleteTask = async (taskId) => {
     try {
         await tasksStore.deleteATask(taskId)
+        triggerToast('Deleted task!', 'success')
     } catch (error) {
-        alert('Error deleting: ', error)
+        triggerToast('Error on deleting task!','error')
     }
 }
 
@@ -51,29 +74,32 @@ const filteredTasks = computed(() => {
     return tasks.value.filter(task => task.is_complete === props.completed)
 })
 </script>
-<template>
-    <h1 class="p-2 font-bold text-lg" :class="{
-        'bg-green-500 text-white': completed,
-        'bg-red-500 text-white': !completed
-    }">
-        {{ completed ? 'Completed tasks' : 'Pending tasks' }}
-    </h1>
 
-    <ul>
-        <div v-if="loading">Loading ...</div>
-        <div v-else class="flex-col border-slate-500 border-2">
-            <li v-for="task in filteredTasks" :key="task.id">
-                <h3 class="text-xl px-4">
-                    {{ task.title }}
-                </h3>
-                <button-component @click="openEditModal(task.id)">Edit Task</button-component>
-                <button-component v-if="!completed" @click="markTaskAsCompleted(task.id)">Mark as
-                    completed</button-component>
-                <button-component v-if="completed" @click="markTaskAsPending(task.id)">Mark as
-                    pending</button-component>
-                <button-component @click="deleteTask(task.id)">Delete</button-component>
-            </li>
-        </div>
-    </ul>
-    <EditTaskModalComponent v-if="selectedTaskId" :taskId="selectedTaskId" @close="closeEditModal" />
+<template>
+    <main class="flex-col m-2 lg:w-1/2">
+        <h1 class="p-2 font-bold text-lg select-none" :class="{
+            'bg-green-500 text-white': completed,
+            'bg-red-500 text-white': !completed
+        }">
+            {{ completed ? 'Completed tasks' : 'Pending tasks' }}
+        </h1>
+    
+        <ul>
+            <div v-if="loading">Loading ...</div>
+            <div v-else>
+                <li v-for="task in filteredTasks" :key="task.id" class="my-2 flex-col border-slate-500 border-2">
+                    <h3 class="text-xl px-4 font-bold">
+                        {{ task.title }}
+                    </h3>
+                    <button-component @click="openEditModal(task.id)">Edit Task</button-component>
+                    <button-component v-if="!completed" @click="markTaskAsCompleted(task.id)">Mark as
+                        completed</button-component>
+                    <button-component v-if="completed" @click="markTaskAsPending(task.id)">Mark as
+                        pending</button-component>
+                    <button-component @click="deleteTask(task.id)">Delete</button-component>
+                </li>
+            </div>
+        </ul>
+        <EditTaskModalComponent v-if="selectedTaskId" :taskId="selectedTaskId" @close="closeEditModal" />
+    </main>
 </template>

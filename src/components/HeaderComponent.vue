@@ -1,41 +1,40 @@
 <script setup>
 import { useUserStore } from '@/stores/userStore'
-import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router';
 import LogoComponent from '@/components/LogoComponent.vue';
-import ButtonComponent from './ButtonComponent.vue';
-
-const router = useRouter()
+import UserComponent from '@/components/UserComponent.vue';
+import { ref, watch, computed } from 'vue'
 
 const userStore = useUserStore()
+const route = useRoute()
 
-const signOut = () => {
-	userStore.signOut()
-	router.push({ name: 'signin' })
-}
+const user = ref(userStore.user)
+
+watch(() => userStore.user, (newValue) => {
+	user.value = newValue
+})
+
+const title = computed(() => {
+	if(route.path === '/') return 'Tasks'
+	if(route.path === '/about') return 'About'
+	if(route.path === 'signin') return 'Sign in'
+	if(route.path ==='signup') return 'Sign up'
+	return ''
+})
 </script>
 
 <template>
-	<header class="p-6 bg-white shadow-md" >
+	<header class="p-6 bg-white shadow-md">
 		<div class="flex items-center justify-between">
-			<h1 class="text-xl font-bold text-center mb-4">
-				TO_DO <span class="text-xs text-gray-500">by J[Vi_Va}</span>
+			<h1 class="text-xl font-bold text-center mb-4 select-none">
+				TO_DO app
 			</h1>
-			<ButtonComponent
-				v-show="$route.path !== '/signin' && 
-						$route.path !== '/signup'" 
-				@click="signOut">Sign-Out
-			</ButtonComponent>
+			<user-component v-if="user" />
 		</div>
-		<nav class="flex items-center justify-between">
-			<LogoComponent />
-			<ul class="flex justify-end text-lg">
-				<li class="hover:text-blue-500 cursor-pointer px-4">
-					<RouterLink class="" to="/">Tasks</RouterLink>
-				</li>
-				<li class="hover:text-blue-500 cursor-pointer px-4">
-					<RouterLink to="/about">About</RouterLink>
-				</li>
-			</ul>
-		</nav>
+		<div class="flex items-center justify-between">
+			<LogoComponent class="w-80"/>
+			<p class="font-bold text-2xl text-center w-80 select-none">{{ title }}</p>
+			<p class="font-bold w-80 text-right select-none">&copy; 2024 Joan-vv with &#9829;</p>
+		</div>
 	</header>
 </template>

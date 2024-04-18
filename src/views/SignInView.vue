@@ -4,6 +4,27 @@ import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
 import ButtonComponent from '@/components/ButtonComponent.vue';
 import SignUpPrompt from '@/components/SignUpPrompt.vue';
+import 'vue-toast-notification/dist/theme-bootstrap.css'
+import { useToast } from 'vue-toast-notification';
+
+const toast = useToast()
+
+const triggerToast = (message) => {
+    toast.open({
+        message: message,
+        type: 'error',
+        position: 'top',
+        duration: 6000,
+        dismissible: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: true,
+        showCloseButton: true,
+        closeOnClick: true,
+        closeButtonAriaLabel: 'Close'
+    })
+}
+
 
 const router = useRouter()
 
@@ -17,7 +38,7 @@ const signIn = async () => {
 		await userStore.signIn(user.value, password.value)
 		router.push({ name: 'home' })
 	} catch (error) {
-		alert('signIn error')
+		triggerToast('Something went wrong!')
 	}
 }
 
@@ -28,8 +49,8 @@ const signUp = () => {
 </script>
 
 <template>
-	<main>
-		<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+	<main class="flex justify-center">
+		<div class="mt-20 sm:w-full sm:max-w-sm">
 
 			<form @submit.prevent="signIn">
 				<div class="mb-4">
@@ -43,7 +64,7 @@ const signUp = () => {
 						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
 				</div>
 				<ButtonComponent type="submit"
-					class="w-full bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
+					class="ml-0 w-full bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
 					Sign In
 				</ButtonComponent>
 				<div v-if="userStore.error" class="text-red-500 text-sm mt-2">

@@ -3,6 +3,26 @@ import { useTasksStore } from '@/stores/tasksStore'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import ButtonComponent from './ButtonComponent.vue';
+import 'vue-toast-notification/dist/theme-bootstrap.css'
+import { useToast } from 'vue-toast-notification';
+
+const toast = useToast()
+
+const triggerToast = (message, type) => {
+    toast.open({
+        message: message,
+        type: type,
+        position: 'top',
+        duration: 6000,
+        dismissible: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: true,
+        showCloseButton: true,
+        closeOnClick: true,
+        closeButtonAriaLabel: 'Close'
+    })
+}
 
 const props = defineProps({
   taskId: Number,
@@ -23,9 +43,9 @@ const updateTask = async () => {
   else {
     try {
       await tasksStore.editATask(props.taskId, taskTitle.value)
-      alert('edited successfully!')
+      triggerToast('Edited task!', 'success')
     } catch (error) {
-      alert('error on edit task --> ', error)
+      triggerToast('Error on edit tasks!', 'error')
     } finally {
       emits('close')
     }

@@ -1,10 +1,29 @@
 <script setup>
-import UserComponent from '@/components/UserComponent.vue'
 import AddTask from '@/components/AddTaskComponent.vue'
 import TaskComponent from '@/components/TaskComponent.vue'
 import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTasksStore } from '@/stores/tasksStore'
+import 'vue-toast-notification/dist/theme-bootstrap.css'
+import { useToast } from 'vue-toast-notification';
+
+const toast = useToast()
+
+const triggerToast = (message) => {
+    toast.open({
+        message: message,
+        type: 'error',
+        position: 'top',
+        duration: 6000,
+        dismissible: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: true,
+        showCloseButton: true,
+        closeOnClick: true,
+        closeButtonAriaLabel: 'Close'
+    })
+}
 
 const tasksStore = useTasksStore()
 
@@ -14,21 +33,21 @@ onMounted(async () => {
 	if (tasks.value.length) {
 		return
 	}
-	await tasksStore.fetchTasks()
+	try {
+		await tasksStore.fetchTasks()
+	} catch (error) {
+		triggerToast('Error on fetch tasks!')
+	}
 })
-
 </script>
+
 <template>
-	<main class="max-w-screen-sm mx-auto mt-5">
-		<header class="flex-col">
-			<user-component class="text-xl p-2 bg-gray-500 text-white text-center" />
-			<h1 class="text-xl p-2 bg-black my-2 text-center text-white">Your tasks: </h1>
-		</header>
+	<main class="flex-col mt-5">
+		<add-task class="mx-auto bg-black pl-2" />
 		<div v-if="isLoading">Loading tasks ... </div>
-		<section v-else>
+		<section v-else class="lg:flex">
 			<TaskComponent :completed="false" />
 			<TaskComponent :completed="true" />
 		</section>
-		<add-task />
 	</main>
 </template>
