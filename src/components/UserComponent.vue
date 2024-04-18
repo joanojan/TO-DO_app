@@ -1,6 +1,6 @@
 <script setup>
 import { useUserStore } from '@/stores/userStore'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ref } from 'vue'
 
 const isDropdownOpen = ref(false)
@@ -10,6 +10,7 @@ const toggleDropdown = () => {
 }
 
 const router = useRouter()
+const route = useRoute()
 
 const userStore = useUserStore()
 
@@ -51,11 +52,11 @@ document.addEventListener('click', (event) => {
             class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="py-1" role="none">
-                <a @click="handleMenuItemClick('/')" to="/"
+                <a v-if="route.path !=='/'" @click="handleMenuItemClick('/')"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1">
                     Tasks
                 </a>
-                <a @click="handleMenuItemClick('/about')"
+                <a v-if="route.path !== '/about'" @click="handleMenuItemClick('/about')"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1">
                     About
                 </a>
