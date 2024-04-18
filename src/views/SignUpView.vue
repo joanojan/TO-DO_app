@@ -33,11 +33,14 @@ const form = ref({
 });
 
 const handleSubmit = async () => {
+    //open is loading
     try {
         await userStore.signUp(form.value.email, form.value.password)
         success.value = true
     } catch (error) {
         triggerToast('Something went wrong!')
+    } finally {
+        //close is loading
     }
 }
 </script>
@@ -65,7 +68,7 @@ const handleSubmit = async () => {
                         class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
                 <ButtonComponent type="submit"
-                    class="w-full m-0 bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
+                    class="w-full ml-0 bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
                     Sign Up
                 </ButtonComponent>
             </form>

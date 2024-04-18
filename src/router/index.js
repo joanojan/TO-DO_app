@@ -30,7 +30,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore()
-
+  
   if (userStore.user === undefined) {
     await userStore.fetchUser()
   }
