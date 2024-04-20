@@ -16,9 +16,13 @@ const userStore = useUserStore()
 
 const user = ref(userStore.user)
 
-const signOut = () => {
-    userStore.signOut()
-    router.push({ name: 'signin' })
+const signOut = async () => {
+    try {
+        await userStore.signOut()
+        router.push({ name: 'signin' })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const handleMenuItemClick = (route) => {

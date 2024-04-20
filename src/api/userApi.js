@@ -2,9 +2,11 @@ import { supabase } from '@/api/supabase'
 
 export const fetchActualUser = async () => {
   const { data, error } = await supabase.auth.getSession()
-  if(error){ 
-    throw error
+
+  if (error) {
+    throw new Error(error.message)
   }
+  
   return data?.session?.user || null
 }
 
@@ -39,4 +41,27 @@ export const logOut = async () => {
   }
 
   return undefined
+}
+
+export const loginWithProvider = async (provider) => {
+  const { user, error } = await supabase.auth.signInWithOAuth({
+    //provider github sin opciones
+    // llevar la funciona  a userApi
+    //lo + personalizable: por parametro des de fuera componente,
+    //button login provider
+    //props del componente - provider: 'github',google,facebook,twitter
+    //secret una vez -> cualquier login provider
+    provider: provider,
+    //This is for google refresh token - should I move that from here?
+    options: {
+      queryParams: {
+        access_type: 'offline',
+        prompt: 'consent'
+      }
+    }
+  })
+  if (error) {
+    throw new Error(error.message)
+  }
+  return user
 }

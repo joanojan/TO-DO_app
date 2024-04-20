@@ -18,7 +18,7 @@ const triggerToast = (message, type) => {
   toast.open({
     message: message,
     type: type,
-    position: 'top',
+    position: 'top-left',
     duration: 6000,
     dismissible: true,
     pauseOnHover: true,

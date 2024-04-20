@@ -62,7 +62,7 @@ const signIn = () => {
                 Please confirm your email to activate your account.
             </h1>
         </div>
-        <div class="mt-20 sm:w-full sm:max-w-sm mx-auto">
+        <div class="mt-10 sm:w-full sm:max-w-sm mx-auto">
 
             <form @submit.prevent="handleSubmit">
                 <div class="mb-4">
