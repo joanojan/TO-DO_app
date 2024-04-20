@@ -2,10 +2,16 @@
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
-import ButtonComponent from '@/components/ButtonComponent.vue';
-import SignUpPrompt from '@/components/SignUpPrompt.vue';
+import ButtonComponent from '@/components/ButtonComponent.vue'
+import SignUpPrompt from '@/components/SignUpPrompt.vue'
 import 'vue-toast-notification/dist/theme-bootstrap.css'
-import { useToast } from 'vue-toast-notification';
+import { useToast } from 'vue-toast-notification'
+import { storeToRefs } from 'pinia'
+import { useAppStore } from '@/stores/appStore'
+
+const appStore = useAppStore()
+
+const { showLoading } = storeToRefs(appStore)
 
 const toast = useToast()
 
@@ -30,10 +36,13 @@ const password = ref('')
 
 const signIn = async () => {
 	try {
+		showLoading.value = true
 		await userStore.signIn(user.value, password.value)
 		router.push({ name: 'home' })
 	} catch (error) {
 		triggerToast('Something went wrong!')
+	} finally {
+		showLoading.value = false
 	}
 }
 
