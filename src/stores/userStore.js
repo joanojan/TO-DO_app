@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { fetchActualUser, createNewUser, logIn, logOut } from '@/api/userApi'
+import { fetchActualUser, createNewUser, logIn, logOut, loginWithProvider } from '@/api/userApi'
 
 export const useUserStore = defineStore('user', () => {
   // State
@@ -25,6 +25,10 @@ export const useUserStore = defineStore('user', () => {
     user.value = await logOut()
   }
 
+  async function signInWithGoogle() {
+    user.value = await loginWithProvider('google')
+  }
+
   return {
     // State
     user,
@@ -34,6 +38,7 @@ export const useUserStore = defineStore('user', () => {
     fetchUser,
     signUp,
     signIn,
-    signOut
+    signOut,
+    signInWithGoogle
   }
 })
