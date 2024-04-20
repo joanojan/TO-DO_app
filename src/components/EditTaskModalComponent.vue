@@ -5,6 +5,11 @@ import { ref } from 'vue'
 import ButtonComponent from './ButtonComponent.vue';
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification';
+import { useAppStore } from '@/stores/appStore'
+
+const appStore = useAppStore()
+
+const { showLoading } = storeToRefs(appStore)
 
 const toast = useToast()
 
@@ -36,11 +41,13 @@ const updateTask = async () => {
   if (taskTitle.value.length < 4) { alert('Please give a title (Min 4 letters)') }
   else {
     try {
+      showLoading.value = true
       await tasksStore.editATask(props.taskId, taskTitle.value)
       triggerToast('Edited task!', 'success')
     } catch (error) {
       triggerToast('Error on edit tasks!', 'error')
     } finally {
+      showLoading.value = false
       emits('close')
     }
   }

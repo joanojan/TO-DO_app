@@ -1,10 +1,16 @@
 <script setup>
+import { storeToRefs } from 'pinia';
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { useTasksStore } from '@/stores/tasksStore'
 import ButtonComponent from './ButtonComponent.vue';
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification';
+import { useAppStore } from '@/stores/appStore'
+
+const appStore = useAppStore()
+
+const { showLoading } = storeToRefs(appStore)
 
 const toast = useToast()
 
@@ -29,12 +35,15 @@ async function addTask() {
     if (newTask.value.length < 4) {
       triggerToast('Minimum length is 4 letters', 'warning')
     } else {
+      showLoading.value = true
       await tasksStore.addNewTask(userStore.user.id, newTask.value)
       newTask.value = ''
       triggerToast('Added Task!', 'success')
     }
   } catch (error) {
     triggerToast('Error trying to add task', 'error')
+  } finally {
+    showLoading.value = false
   }
 }
 </script>
