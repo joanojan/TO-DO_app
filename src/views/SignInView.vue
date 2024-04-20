@@ -1,4 +1,5 @@
 <script setup>
+import SignInGoogleBtnComponent from '@/components/SignInGoogleBtnComponent.vue'
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
@@ -26,7 +27,6 @@ const triggerToast = (message) => {
     })
 }
 
-
 const router = useRouter()
 
 const userStore = useUserStore()
@@ -49,7 +49,6 @@ const signIn = async () => {
 const signUp = () => {
 	router.push({ name: 'signup' })
 }
-
 </script>
 
 <template>
@@ -77,6 +76,7 @@ const signUp = () => {
 			</form>
 
 			<SignUpPrompt @click="signUp" />
+			<SignInGoogleBtnComponent class="mx-auto my-5"/>
 		</div>
 	</main>
 </template>
