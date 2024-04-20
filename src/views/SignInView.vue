@@ -53,7 +53,7 @@ const signUp = () => {
 
 <template>
 	<main class="flex justify-center">
-		<div class="mt-20 sm:w-full sm:max-w-sm">
+		<div class="mt-10 sm:w-full sm:max-w-sm">
 
 			<form @submit.prevent="signIn">
 				<div class="mb-4">

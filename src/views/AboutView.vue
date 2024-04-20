@@ -1,14 +1,15 @@
 <template>
 	<main>
-		<h1 class="p-4 bg-gray-500 text-3xl text-white text-center">
+		<h1 class="p-4 bg-gray-500 md:text-3xl text-white text-center">
 			IRON HACK FINAL PROJECT
 		</h1>
 		<section class="flex my-2 text-xl">
 			<div class="mx-auto">
-				<h1 class="text-3xl bg-pink-400 text-center p-2 text-slate-200">Crafted with love - Joan Vila Valls -
+				<h1 class="md:text-3xl bg-pink-400 text-center p-2 text-slate-200">
+					Crafted with love - Joan Vila Valls -
 				</h1>
 				<div class="flex justify-evenly my-6">
-					<a class="text-slate-500 hover:text-pink-400" href="https://main--todo-app-by-jvv.netlify.app/">
+					<a class="text-slate-500 hover:text-pink-400 " href="https://main--todo-app-by-jvv.netlify.app/">
 						Live website
 					</a>
 					<a class="text-slate-500 hover:text-pink-400" href="https://github.com/joanojan/TO-DO_app">
