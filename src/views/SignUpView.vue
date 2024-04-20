@@ -1,9 +1,15 @@
 <script setup>
 import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useAppStore } from '@/stores/appStore'
 import { useUserStore } from '@/stores/userStore'
 import ButtonComponent from "@/components/ButtonComponent.vue"
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification';
+
+const appStore = useAppStore()
+
+const { showLoading } = storeToRefs(appStore)
 
 const toast = useToast()
 
@@ -28,14 +34,15 @@ const form = ref({
 });
 
 const handleSubmit = async () => {
-    //open is loading
     try {
+        showLoading.value = true
         await userStore.signUp(form.value.email, form.value.password)
         success.value = true
+        
     } catch (error) {
         triggerToast('Something went wrong!')
     } finally {
-        //close is loading
+        showLoading.value = false
     }
 }
 </script>

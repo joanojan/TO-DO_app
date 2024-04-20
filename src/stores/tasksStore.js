@@ -11,6 +11,7 @@ export const useTasksStore = defineStore('tasks', () => {
   // Actions
   async function fetchTasks() {
     try {
+      //aquí no hi anirá. Això va a on crides el fetch.
       isLoading.value = true
       tasks.value = await fetchAllTasks()
     } catch (error) {

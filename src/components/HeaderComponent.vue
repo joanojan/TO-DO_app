@@ -17,8 +17,8 @@ watch(() => userStore.user, (newValue) => {
 const title = computed(() => {
 	if(route.path === '/') return 'Tasks'
 	if(route.path === '/about') return 'About'
-	if(route.path === 'signin') return 'Sign in'
-	if(route.path ==='signup') return 'Sign up'
+	if(route.path === '/signin') return 'Sign in'
+	if(route.path ==='/signup') return 'Sign up'
 	return ''
 })
 </script>
@@ -29,7 +29,7 @@ const title = computed(() => {
 			<h1 class="text-xl font-bold text-center mb-4 select-none">
 				TO_DO app
 			</h1>
-			<user-component v-if="user" />
+			<user-component v-if="user && route.path !== '/signup'" />
 		</div>
 		<div class="flex items-center justify-between">
 			<LogoComponent class="w-80"/>

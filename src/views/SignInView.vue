@@ -68,8 +68,6 @@ const signUp = () => {
 			</form>
 
 			<SignUpPrompt @click="signUp" />
-
 		</div>
-
 	</main>
 </template>
