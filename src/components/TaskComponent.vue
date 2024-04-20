@@ -16,11 +16,6 @@ const triggerToast = (message, type) => {
         duration: 6000,
         dismissible: true,
         pauseOnHover: true,
-        draggable: true,
-        progress: true,
-        showCloseButton: true,
-        closeOnClick: true,
-        closeButtonAriaLabel: 'Close'
     })
 }
 
@@ -91,7 +86,7 @@ const filteredTasks = computed(() => {
                     <h3 class="text-xl px-4 font-bold">
                         {{ task.title }}
                     </h3>
-                    <button-component @click="openEditModal(task.id)">Edit Task</button-component>
+                    <button-component v-if="!completed" @click="openEditModal(task.id)">Edit Task</button-component>
                     <button-component v-if="!completed" @click="markTaskAsCompleted(task.id)">Mark as
                         completed</button-component>
                     <button-component v-if="completed" @click="markTaskAsPending(task.id)">Mark as

@@ -5,6 +5,11 @@ import { ref } from 'vue'
 import ButtonComponent from './ButtonComponent.vue';
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification';
+import { useAppStore } from '@/stores/appStore'
+
+const appStore = useAppStore()
+
+const { showLoading } = storeToRefs(appStore)
 
 const toast = useToast()
 
@@ -13,14 +18,8 @@ const triggerToast = (message, type) => {
         message: message,
         type: type,
         position: 'top',
-        duration: 6000,
+        duration: 5000,
         dismissible: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: true,
-        showCloseButton: true,
-        closeOnClick: true,
-        closeButtonAriaLabel: 'Close'
     })
 }
 
@@ -42,11 +41,13 @@ const updateTask = async () => {
   if (taskTitle.value.length < 4) { alert('Please give a title (Min 4 letters)') }
   else {
     try {
+      showLoading.value = true
       await tasksStore.editATask(props.taskId, taskTitle.value)
       triggerToast('Edited task!', 'success')
     } catch (error) {
       triggerToast('Error on edit tasks!', 'error')
     } finally {
+      showLoading.value = false
       emits('close')
     }
   }
@@ -97,8 +98,8 @@ const cancelEdit = () => {
               </div>
               <form>
                 <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                  <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Edit task</h3>
-                  <label for="title">Title</label>
+                  <h3 class="text-base font-semibold leading-6 text-gray-900 select-none" id="modal-title">Edit task</h3>
+                  <label class="select-none" for="title">Title</label>
                   <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text" id="title" v-model="taskTitle" required />

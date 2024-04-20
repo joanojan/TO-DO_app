@@ -1,9 +1,19 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/stores/userStore'
 import ButtonComponent from "@/components/ButtonComponent.vue"
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification';
+import { useAppStore } from '@/stores/appStore'
+import SignInPromptComponent from '@/components/SignInPromptComponent.vue'
+
+const router = useRouter()
+
+const appStore = useAppStore()
+
+const { showLoading } = storeToRefs(appStore)
 
 const toast = useToast()
 
@@ -15,16 +25,12 @@ const triggerToast = (message) => {
         duration: 6000,
         dismissible: true,
         pauseOnHover: true,
-        draggable: true,
-        progress: true,
-        showCloseButton: true,
-        closeOnClick: true,
-        closeButtonAriaLabel: 'Close'
     })
 }
 
 const userStore = useUserStore()
 
+//On success I display the confirm-email message
 const success = ref(false)
 
 const form = ref({
@@ -33,15 +39,19 @@ const form = ref({
 });
 
 const handleSubmit = async () => {
-    //open is loading
     try {
+        showLoading.value = true
         await userStore.signUp(form.value.email, form.value.password)
         success.value = true
     } catch (error) {
         triggerToast('Something went wrong!')
     } finally {
-        //close is loading
+        showLoading.value = false
     }
+}
+
+const signIn = () => {
+	router.push({ name: 'signin' })
 }
 </script>
 
@@ -72,6 +82,7 @@ const handleSubmit = async () => {
                     Sign Up
                 </ButtonComponent>
             </form>
+            <sign-in-prompt-component @click="signIn"/>
         </div>
     </main>
 </template>

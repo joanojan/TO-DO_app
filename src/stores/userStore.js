@@ -8,8 +8,6 @@ export const useUserStore = defineStore('user', () => {
 
   const error = ref(undefined)
 
-  // Getters
-
   // Actions -> Errors to be handled by the views/components
   async function fetchUser() {
     user.value = await fetchActualUser()
