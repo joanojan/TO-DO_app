@@ -1,6 +1,6 @@
 <template>
-	<main>
-		<h1 class="p-4 bg-gray-500 md:text-3xl text-white text-center">
+	<main class="dark:text-white">
+		<h1 class="dark:text-black dark:bg-white p-4 bg-gray-500 md:text-3xl text-white text-center">
 			IRON HACK FINAL PROJECT
 		</h1>
 		<section class="flex my-2 text-xl">

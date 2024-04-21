@@ -52,13 +52,6 @@ export const loginWithProvider = async (provider) => {
     //props del componente - provider: 'github',google,facebook,twitter
     //secret una vez -> cualquier login provider
     provider: provider,
-    //This is for google refresh token - should I move that from here?
-    options: {
-      queryParams: {
-        access_type: 'offline',
-        prompt: 'consent'
-      }
-    }
   })
   if (error) {
     throw new Error(error.message)

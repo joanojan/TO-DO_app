@@ -5,6 +5,7 @@ export default {
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
+  darkMode: 'selector',
   theme: {
     screens: {
       'sm': '640px',
