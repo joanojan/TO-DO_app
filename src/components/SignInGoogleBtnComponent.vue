@@ -7,6 +7,8 @@ import { useToast } from 'vue-toast-notification'
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/stores/appStore'
 
+//The component will be rehused for every provider.
+
 const appStore = useAppStore()
 
 const { showLoading } = storeToRefs(appStore)
