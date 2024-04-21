@@ -28,7 +28,7 @@ const tasksStore = useTasksStore()
 
 //To pass the task id to the Edit task modal
 const selectedTaskId = ref(null)
-const { loading, tasks } = storeToRefs(tasksStore)
+const { tasks } = storeToRefs(tasksStore)
 
 const openEditModal = (taskId) => {
     selectedTaskId.value = taskId
