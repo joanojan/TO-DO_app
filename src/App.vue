@@ -8,7 +8,7 @@ import { useAppStore } from '@/stores/appStore'
 const appStore = useAppStore()
 
 const showLoading = ref(appStore.showLoading)
-const darkMode = ref(appStore.darkMode)
+//const darkMode = ref(appStore.darkMode)
 
 watch(() => appStore.showLoading, (newValue) => {
 	showLoading.value = newValue
@@ -16,7 +16,7 @@ watch(() => appStore.showLoading, (newValue) => {
 </script>
 
 <template>
-	<div id="app" :class="{ 'dark': darkMode }" class="dark:bg-slate-800 .p-0">
+	<div class="dark:bg-slate-800">
 		<loading-component v-show="showLoading" />
 		<header-component />
 		<router-view />
