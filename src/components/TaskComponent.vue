@@ -28,7 +28,7 @@ const tasksStore = useTasksStore()
 
 //To pass the task id to the Edit task modal
 const selectedTaskId = ref(null)
-const { loading, tasks } = storeToRefs(tasksStore)
+const { tasks } = storeToRefs(tasksStore)
 
 const openEditModal = (taskId) => {
     selectedTaskId.value = taskId
@@ -71,8 +71,8 @@ const filteredTasks = computed(() => {
 </script>
 
 <template>
-    <main class="flex-col m-2 lg:w-1/2">
-        <h1 class="p-2 font-bold text-lg select-none" :class="{
+    <main class="flex-col lg:w-1/2 sm:w-full lg:mx-4 md:max-w-xl mx-auto">
+        <h1 class="p-2 font-bold text-lg text-center select-none" :class="{
             'bg-green-500 text-white': completed,
             'bg-red-500 text-white': !completed
         }">
@@ -87,7 +87,7 @@ const filteredTasks = computed(() => {
                 </h3>
                 <button-component v-if="!completed" @click="openEditModal(task.id)">Edit Task</button-component>
                 <button-component v-if="!completed" @click="markTaskAsCompleted(task.id)">Mark as
-                    completed</button-component>
+                    Done</button-component>
                 <button-component v-if="completed" @click="markTaskAsPending(task.id)">Mark as
                     pending</button-component>
                 <button-component @click="deleteTask(task.id)">Delete</button-component>

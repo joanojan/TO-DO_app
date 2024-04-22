@@ -28,8 +28,8 @@ const title = computed(() => {
 
 <template>
 	<header class="p-6 bg-white shadow-md dark:bg-slate-700 dark:text-white">
-		<div class="flex items-center justify-between">
-			<h1 class="text-xl font-bold text-center mb-4 select-none">
+		<div class="flex items-center justify-between mb-4">
+			<h1 class="text-xl font-bold text-center select-none">
 				TO_DO app
 			</h1>
 			<user-component v-if="user && route.path !== '/signup'" />
