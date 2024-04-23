@@ -16,12 +16,12 @@ watch(() => appStore.showLoading, (newValue) => {
 </script>
 
 <template>
-	<div class="dark:bg-slate-800 min-h-screen flex flex-col">
-		<main>
+	<div class="dark:bg-slate-800 min-h-screen flex-col">
+		<main class="flex-col">
 			<loading-component v-show="showLoading" />
 			<header-component />
 			<router-view />
-			<footer-component />
 		</main>
+		<footer-component class="fixed bottom-0 w-full text-center dark:bg-slate-800 bg-white"/>
 	</div>
 </template>
