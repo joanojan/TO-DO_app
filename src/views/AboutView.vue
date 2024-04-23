@@ -13,7 +13,7 @@
 				</div>
 				<div class="flex justify-evenly my-6">
 					<a class="underline dark:text-lime-500 text-slate-500 hover:text-pink-400 "
-						href="https://main--todo-app-by-jvv.netlify.app/">
+						href="https://todo-app-by-jvv.netlify.app/">
 						Live website
 					</a>
 					<a class="underline dark:text-yellow-200 text-slate-500 hover:text-pink-400"

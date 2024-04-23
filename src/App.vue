@@ -16,10 +16,12 @@ watch(() => appStore.showLoading, (newValue) => {
 </script>
 
 <template>
-	<div class="dark:bg-slate-800">
-		<loading-component v-show="showLoading" />
-		<header-component />
-		<router-view />
-		<footer-component />
+	<div class="dark:bg-slate-800 min-h-screen flex flex-col">
+		<main>
+			<loading-component v-show="showLoading" />
+			<header-component />
+			<router-view />
+			<footer-component />
+		</main>
 	</div>
 </template>

@@ -46,10 +46,12 @@ onMounted(async () => {
 
 <template>
 	<main class="flex-col mt-5">
-		<add-task class="mx-auto shadow-xl rounded pl-2 dark:bg-slate-500" />
-		<section class="lg:flex">
-			<TaskComponent :completed="false" />
-			<TaskComponent :completed="true" />
-		</section>
+		<add-task class="shadow-xl rounded pl-2 dark:bg-slate-500" />
+		<div class="">
+			<section class="lg:flex justify-center">
+				<TaskComponent :completed="false" />
+				<TaskComponent :completed="true" />
+			</section>
+		</div>
 	</main>
 </template>
