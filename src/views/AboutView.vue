@@ -9,7 +9,7 @@
 					<h1 class="md:text-3xl">
 					 Created by - Joan Vila Valls
 					</h1>
-					<a class="underline text-lime-500 hover:text-lime-200" href="https://www.linkedin.com/in/joanvv/">LinkedIn Profile link</a>
+					<a class="underline text-yellow-200 hover:text-blue-500" href="https://www.linkedin.com/in/joanvv/">LinkedIn Profile link</a>
 				</div>
 				<div class="flex justify-evenly my-6">
 					<a class="underline dark:text-lime-500 text-slate-500 hover:text-pink-400 "
