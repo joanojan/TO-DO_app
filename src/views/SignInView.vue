@@ -4,11 +4,11 @@ import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
 import ButtonComponent from '@/components/ButtonComponent.vue'
-import SignUpPrompt from '@/components/SignUpPrompt.vue'
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification'
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/stores/appStore'
+import SignPromptComponent from '@/components/SignPromptComponent.vue'
 
 const appStore = useAppStore()
 
@@ -54,15 +54,14 @@ const signUp = () => {
 <template>
 	<main class="flex justify-center">
 		<div class="mt-10 sm:w-full sm:max-w-sm">
-
 			<form @submit.prevent="signIn">
 				<div class="mb-4">
-					<label for="email" class="block my-2 text-sm font-medium leading-6 text-gray-900">Email address</label>
+					<label for="email" class="block my-2 text-sm font-medium leading-6 text-gray-900 dark:text-white">Email address</label>
 					<input type="email" id="email" v-model="user" placeholder="Email"
 						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
 				</div>
 				<div class="mb-4">
-					<label for="password" class="block text-sm font-medium leading-6 my-2 text-gray-900">Password</label>
+					<label for="password" class="block text-sm font-medium leading-6 my-2 text-gray-900 dark:text-white">Password</label>
 					<input type="password" id="password" v-model="password" placeholder="Password"
 						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
 				</div>
@@ -74,8 +73,8 @@ const signUp = () => {
 					{{ userStore.error.message }}
 				</div>
 			</form>
-
-			<SignUpPrompt @click="signUp" />
+			
+			<sign-prompt-component @click="signUp" />
 			<SignInGoogleBtnComponent class="mx-auto my-5"/>
 		</div>
 	</main>

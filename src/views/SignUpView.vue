@@ -7,7 +7,7 @@ import ButtonComponent from "@/components/ButtonComponent.vue"
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification';
 import { useAppStore } from '@/stores/appStore'
-import SignInPromptComponent from '@/components/SignInPromptComponent.vue'
+import SignPromptComponent from '@/components/SignPromptComponent.vue'
 
 const router = useRouter()
 
@@ -57,7 +57,7 @@ const signIn = () => {
 
 <template>
     <main class="flex-col">
-        <div v-show="success">
+        <div v-if="success">
             <h1 class="bg-red-400 text-white text-3xl p-5 text-center">
                 Please confirm your email to activate your account.
             </h1>
@@ -82,7 +82,7 @@ const signIn = () => {
                     Sign Up
                 </ButtonComponent>
             </form>
-            <sign-in-prompt-component @click="signIn"/>
+			<sign-prompt-component signIn @click="signIn" />
         </div>
     </main>
 </template>
