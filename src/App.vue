@@ -1,8 +1,8 @@
 <script setup>
 import HeaderComponent from '@/components/HeaderComponent.vue'
-import FooterComponent from './components/FooterComponent.vue'
+import FooterComponent from '@/components/FooterComponent.vue'
 import { ref, watch } from 'vue'
-import LoadingComponent from './components/LoadingComponent.vue'
+import LoadingComponent from '@/components/LoadingComponent.vue'
 import { useAppStore } from '@/stores/appStore'
 
 const appStore = useAppStore()
@@ -16,12 +16,19 @@ watch(() => appStore.showLoading, (newValue) => {
 </script>
 
 <template>
-	<div class="dark:bg-slate-800 min-h-screen flex-col">
+	<div class="dark:bg-slate-800 min-h-screen flex-col bg-no-repeat bg-cover bg-center">
+		<loading-component v-show="showLoading" />
 		<main class="flex-col">
-			<loading-component v-show="showLoading" />
 			<header-component />
 			<router-view />
+			<!-- empty div allows to see all the content: not hidden by footer -->
+			<div class="h-[108px]"></div>
 		</main>
-		<footer-component class="fixed bottom-0 w-full text-center dark:bg-slate-800 bg-white"/>
+		<footer-component />
 	</div>
 </template>
+<style scoped>
+div {
+	background-image: url('/src/assets/icons/canigo.jpg');
+}
+</style>
