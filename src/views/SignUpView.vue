@@ -82,7 +82,7 @@ const signIn = () => {
                     Sign Up
                 </ButtonComponent>
             </form>
-			<sign-prompt-component signIn @click="signIn" />
+			<sign-in-prompt-component signIn @click="signIn" />
         </div>
     </main>
 </template>

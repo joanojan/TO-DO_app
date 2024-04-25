@@ -1,5 +1,5 @@
 <script setup>
-import SingnInProviderBtnComponent from '@/components/SingnInProviderBtnComponent.vue';
+import SingnInProviderBtnComponent from '@/components/SingnInProviderBtnComponent.vue';{}
 </script>
 
 <template>

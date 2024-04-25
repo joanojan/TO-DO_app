@@ -25,8 +25,8 @@ export const useUserStore = defineStore('user', () => {
     user.value = await logOut()
   }
 
-  async function signInWithProvider() {
-    user.value = await loginWithProvider('google')
+  async function signInWithProvider(provider) {
+    user.value = await loginWithProvider(provider)
   }
 
   return {

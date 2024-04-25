@@ -37,7 +37,8 @@ const userStore = useUserStore()
 const user = ref('')
 
 const signIn = async () => {
-    try {
+    try { 
+        debugger
         showLoading.value = true
         user.value = await userStore.signInWithProvider(props.provider)
         router.push({ name: 'home' })

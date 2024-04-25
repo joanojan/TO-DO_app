@@ -1,5 +1,4 @@
 <script setup>
-import SignInGoogleBtnComponent from '@/components/SignInGoogleBtnComponent.vue'
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
@@ -9,6 +8,8 @@ import { useToast } from 'vue-toast-notification'
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/stores/appStore'
 import SignPromptComponent from '@/components/SignPromptComponent.vue'
+import SignInGoogleBtnComponent from '@/components/SignInGoogleBtnComponent.vue'
+import SignInGithubBtnComponent from '@/components/SignInGithubBtnComponent.vue'
 
 const appStore = useAppStore()
 
@@ -53,7 +54,7 @@ const signUp = () => {
 
 <template>
 	<main class="flex justify-center">
-		<div class="mt-10 sm:w-full sm:max-w-sm">
+		<div class="mt-4 sm:w-full sm:max-w-sm">
 			<form @submit.prevent="signIn">
 				<div class="mb-4">
 					<label for="email" class="block my-2 text-sm font-medium leading-6 text-gray-900 dark:text-white">Email address</label>
@@ -76,6 +77,7 @@ const signUp = () => {
 			
 			<sign-prompt-component @click="signUp" />
 			<SignInGoogleBtnComponent class="mx-auto my-5"/>
+			<sign-in-github-btn-component class="mx-auto my-5"/>
 		</div>
 	</main>
 </template>
