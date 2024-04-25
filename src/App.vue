@@ -16,7 +16,8 @@ watch(() => appStore.showLoading, (newValue) => {
 </script>
 
 <template>
-	<div class="dark:bg-slate-800 min-h-screen flex-col bg-no-repeat bg-cover bg-center">
+	<base target="">
+	<div class="min-h-screen flex-col">
 		<loading-component v-show="showLoading" />
 		<main class="flex-col">
 			<header-component />
@@ -28,7 +29,11 @@ watch(() => appStore.showLoading, (newValue) => {
 	</div>
 </template>
 <style scoped>
-div {
-	background-image: url('/src/assets/icons/canigo.jpg');
+div { 
+  background: url(/src/assets/icons/canigo.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 </style>

@@ -6,3 +6,11 @@
 #app {
   margin: 0 auto;
 }
+
+a {
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: none;
+  color: aquamarine;
+} 

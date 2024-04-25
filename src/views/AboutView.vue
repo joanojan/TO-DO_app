@@ -7,16 +7,17 @@
 			<div class="mx-auto w-full">
 				<div class="my-4 flex-col bg-gradient-to-l from-sky-500 to-gray-700 text-center p-2 text-white">
 					<h1 class="md:text-3xl">
-					 Joan Vila Valls
+						Joan Vila Valls
 					</h1>
-					<a class="underline text-yellow-400 hover:text-yellow-300" href="https://www.linkedin.com/in/joanvv/" target="_blank" >LinkedIn Profile link</a>
+					<a class="underline text-yellow-400 hover:text-yellow-300"
+						href="https://www.linkedin.com/in/joanvv/">LinkedIn Profile link</a>
 				</div>
 				<div class="flex w-full justify-center my-6">
-					<a class="mx-8 underline hover:text-slate-500 text-2xl"
+					<a class="mx-8 underline hover:text-yellow-300 text-xl md:text-2xl"
 						href="https://todo-app-by-jvv.netlify.app/">
 						Live website
 					</a>
-					<a class="mx-8 underline hover:text-slate-500 text-2xl"
+					<a class="mx-8 underline hover:text-yellow-300 text-xl md:text-2xl"
 						href="https://github.com/joanojan/TO-DO_app">
 						GitHub repo
 					</a>
@@ -27,43 +28,38 @@
 					<div class="flex justify-center my-4">
 						<div class="flex-col">
 							<table class="table-auto">
-								<h3 class="my-4 font-bold text-2xl text-center bg-yellow-500">Frontend stack</h3>
+								<h3 class="my-4 font-bold text-2xl text-center bg-yellow-500">Frontend stack:</h3>
 								<tbody class="bg-gray-600 opacity-75 font-bold text-xl text-white">
 									<tr>
 										<td class="px-4 py-2">Framework:</td>
 										<td class="px-4 py-2">
-											<a class="underline"
-												href="https://vuejs.org/">Vue3</a>
+											<a class="underline" href="https://vuejs.org/">Vue3</a>
 										</td>
 									</tr>
 									<tr>
 										<td class="px-4 py-2">Build tool:</td>
 
 										<td class="px-4 py-2">
-											<a class="underline"
-												href="https://vitejs.dev/">Vite</a>
+											<a class="underline" href="https://vitejs.dev/">Vite</a>
 										</td>
 									</tr>
 									<tr>
 										<td class="px-4 py-2">Routing:</td>
 
 										<td class="px-4 py-2">
-											<a class="underline"
-												href="https://router.vuejs.org/">Vue Router</a>
+											<a href="https://router.vuejs.org/">Vue Router</a>
 										</td>
 									</tr>
 									<tr>
 										<td class="px-4 py-2">State management:</td>
 										<td class="px-4 py-2">
-											<a class="underline"
-												href="https://pinia.vuejs.org/">Pinia</a>
+											<a href="https://pinia.vuejs.org/">Pinia</a>
 										</td>
 									</tr>
 									<tr>
 										<td class="px-4 py-2">CSS framework:</td>
 										<td class="px-4 py-2">
-											<a class="underline"
-												href="https://tailwindcss.com/">Tailwind</a>
+											<a href="https://tailwindcss.com/">Tailwind</a>
 										</td>
 									</tr>
 								</tbody>
@@ -76,6 +72,3 @@
 		</section>
 	</main>
 </template>
-<style scoped>
-
-</style>
