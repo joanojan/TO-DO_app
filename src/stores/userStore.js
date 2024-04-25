@@ -25,8 +25,8 @@ export const useUserStore = defineStore('user', () => {
     user.value = await logOut()
   }
 
-  async function signInWithGoogle() {
-    user.value = await loginWithProvider('google')
+  async function signInWithProvider(provider) {
+    user.value = await loginWithProvider(provider)
   }
 
   return {
@@ -39,6 +39,6 @@ export const useUserStore = defineStore('user', () => {
     signUp,
     signIn,
     signOut,
-    signInWithGoogle
+    signInWithProvider
   }
 })
