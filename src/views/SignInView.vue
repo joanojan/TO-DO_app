@@ -57,12 +57,16 @@ const signUp = () => {
 		<div class="mt-4 sm:w-full sm:max-w-sm">
 			<form @submit.prevent="signIn">
 				<div class="mb-4">
-					<label for="email" class="block my-2 text-sm font-medium leading-6 text-gray-900 dark:text-white">Email address</label>
+					<label for="email" class="block my-2 text-sm font-medium leading-6 text-gray-900">
+						Email address
+					</label>
 					<input type="email" id="email" v-model="user" placeholder="Email"
 						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
 				</div>
 				<div class="mb-4">
-					<label for="password" class="block text-sm font-medium leading-6 my-2 text-gray-900 dark:text-white">Password</label>
+					<label for="password" class="flex justify-between text-sm font-medium leading-6 my-2 text-gray-900">
+						Password <span><a class="text-sm font-medium">Forgot password?</a></span>
+					</label>
 					<input type="password" id="password" v-model="password" placeholder="Password"
 						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
 				</div>
