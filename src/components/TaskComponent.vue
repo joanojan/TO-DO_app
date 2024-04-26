@@ -12,13 +12,12 @@ const triggerToast = (message, type) => {
     toast.open({
         message: message,
         type: type,
-        position: 'top',
-        duration: 6000,
+        position: 'bottom-right',
+        duration: 3000,
         dismissible: true,
         pauseOnHover: true,
     })
 }
-
 
 const props = defineProps({
     completed: Boolean
@@ -93,6 +92,6 @@ const filteredTasks = computed(() => {
                 <button-component @click="deleteTask(task.id)">Delete</button-component>
             </li>
         </ul>
-        <EditTaskModalComponent v-if="selectedTaskId" :taskId="selectedTaskId" @close="closeEditModal" />
+        <edit-task-modal-component v-if="selectedTaskId" :taskId="selectedTaskId" @close="closeEditModal" />
     </main>
 </template>

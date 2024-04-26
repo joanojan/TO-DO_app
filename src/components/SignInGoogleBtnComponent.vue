@@ -1,9 +1,9 @@
 <script setup>
-import SingnInProviderBtnComponent from '@/components/SingnInProviderBtnComponent.vue';{}
+import SignInProviderBtnComponent from '@/components/SignInProviderBtnComponent.vue';{}
 </script>
 
 <template>
-    <singn-in-provider-btn-component provider="google">
+    <sign-in-provider-btn-component provider="google">
         <div
             class="flex items-center bg-white dark:bg-gray-900 border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
             <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -32,5 +32,5 @@ import SingnInProviderBtnComponent from '@/components/SingnInProviderBtnComponen
             </svg>
             <span>Continue with Google</span>
         </div>
-    </singn-in-provider-btn-component>
+    </sign-in-provider-btn-component>
 </template>

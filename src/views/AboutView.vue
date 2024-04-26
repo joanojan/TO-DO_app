@@ -1,30 +1,29 @@
 <template>
 	<main class="my-8">
-		<h1 class="bg-gradient-to-r from-green-600 to-blue-400 p-4 md:text-3xl text-white text-center">
+		<h1 class="max-w-screen-xl mx-auto bg-gradient-to-r from-green-600 to-blue-400 p-4 md:text-3xl text-white text-center">
 			IRON HACK FINAL PROJECT
 		</h1>
 		<section class="flex my-2 text-xl">
 			<div class="mx-auto w-full">
-				<div class="my-4 flex-col bg-gradient-to-l from-sky-500 to-gray-700 text-center p-2 text-white">
+				<div class="max-w-screen-xl mx-auto my-4 flex-col bg-gradient-to-l from-sky-500 to-gray-700 text-center p-2 text-white">
 					<h1 class="md:text-3xl">
 						Joan Vila Valls
 					</h1>
 					<a class="underline text-yellow-400 hover:text-yellow-300"
 						href="https://www.linkedin.com/in/joanvv/">LinkedIn Profile link</a>
 				</div>
-				<div class="flex w-full justify-center my-6">
-					<a class="mx-8 underline hover:text-yellow-300 text-xl md:text-2xl"
+				<div class="flex justify-center my-6 bg-white max-w-screen-sm mx-auto">
+					<a class="font-bold mx-8 underline text-xl md:text-2xl hover:text-gray-600"
 						href="https://todo-app-by-jvv.netlify.app/">
 						Live website
 					</a>
-					<a class="mx-8 underline hover:text-yellow-300 text-xl md:text-2xl"
+					<a class="font-bold mx-8 underline hover:text-gray-600 text-xl md:text-2xl"
 						href="https://github.com/joanojan/TO-DO_app">
 						GitHub repo
 					</a>
 				</div>
-				<hr>
 				<section class="flex-col my-4">
-					<h2 class="text-center font-bold text-2xl m-4">Single Page Application</h2>
+					<h2 class="max-w-screen-sm mx-auto bg-white text-center font-bold text-2xl">Single Page Application</h2>
 					<div class="flex justify-center my-4">
 						<div class="flex-col">
 							<table class="table-auto">
@@ -66,7 +65,6 @@
 							</table>
 						</div>
 					</div>
-					<hr>
 				</section>
 			</div>
 		</section>

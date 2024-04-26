@@ -21,8 +21,8 @@ const triggerToast = (message) => {
     toast.open({
         message: message,
         type: 'error',
-        position: 'top',
-        duration: 6000,
+        position: 'bottom-right',
+        duration: 3000,
         dismissible: true,
         pauseOnHover: true,
     })
@@ -66,17 +66,17 @@ const signUp = () => {
 					<input type="password" id="password" v-model="password" placeholder="Password"
 						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
 				</div>
-				<ButtonComponent type="submit"
+				<button-component type="submit"
 					class="ml-0 w-full bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
 					Sign In
-				</ButtonComponent>
+				</button-component>
 				<div v-if="userStore.error" class="text-red-500 text-sm mt-2">
 					{{ userStore.error.message }}
 				</div>
 			</form>
 			
 			<sign-prompt-component @click="signUp" />
-			<SignInGoogleBtnComponent class="mx-auto my-5"/>
+			<sign-in-google-btn-component class="mx-auto my-5"/>
 			<sign-in-github-btn-component class="mx-auto my-5"/>
 		</div>
 	</main>

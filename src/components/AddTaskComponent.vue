@@ -18,8 +18,8 @@ const triggerToast = (message, type) => {
   toast.open({
     message: message,
     type: type,
-    position: 'top-left',
-    duration: 6000,
+    position: 'bottom-right',
+    duration: 3000,
     dismissible: true,
     pauseOnHover: true,
   })
@@ -53,8 +53,8 @@ async function addTask() {
     <label for="newTask" class="sr-only">Enter new task</label>
     <input type="text" v-model="newTask" id="newTask" placeholder="Enter new task" aria-label="New task input"
       class="flex-grow px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-    <ButtonComponent class="ml-2" @click="addTask">
+    <button-component class="ml-2" @click="addTask">
       Add Task
-    </ButtonComponent>
+    </button-component>
   </div>
 </template>

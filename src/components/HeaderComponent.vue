@@ -27,8 +27,8 @@ const title = computed(() => {
 </script>
 
 <template>
-	<div class="h-4"></div>
-	<header class="max-w-screen-xl p-6 bg-white shadow-2xl shadow-blue-700 dark:bg-slate-700 dark:text-white mx-auto mb-4">
+	<!-- <div class="md:h-4"></div> -->
+	<header class="max-w-screen-xl p-6 bg-white shadow-2xl shadow-blue-700 dark:bg-slate-800 dark:text-white mx-auto mb-4">
 		<div class="flex items-center justify-between mb-4">
 			<h1 class="text-xl font-bold text-center select-none">
 				TO_DO app
@@ -36,8 +36,8 @@ const title = computed(() => {
 			<user-component v-if="user && route.path !== '/signup'" />
 		</div>
 		<div class="flex items-center">
-			<LogoComponent class="w-1/3"/>
-			<p class="font-bold text-2xl text-center w-1/3 select-none">{{ title }}</p>
+			<logo-component class="w-1/3"/>
+			<p class="font-bold md:text-2xl text-center w-1/3 select-none">{{ title }}</p>
 			<dark-mode-toggle-button class="flex w-1/3 justify-end"/>
 		</div>
 	</header>

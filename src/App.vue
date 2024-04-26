@@ -16,7 +16,7 @@ watch(() => appStore.showLoading, (newValue) => {
 </script>
 
 <template>
-	<base target="">
+	<base target="_blank">
 	<div class="min-h-screen flex-col">
 		<loading-component v-show="showLoading" />
 		<main class="flex-col">
@@ -28,6 +28,7 @@ watch(() => appStore.showLoading, (newValue) => {
 		<footer-component />
 	</div>
 </template>
+
 <style scoped>
 div { 
   background: url(/src/assets/icons/canigo.jpg) no-repeat center center fixed; 

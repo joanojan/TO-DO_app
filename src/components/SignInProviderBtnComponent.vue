@@ -24,7 +24,7 @@ const triggerToast = (message) => {
         message: message,
         type: 'error',
         position: 'bottom-right',
-        duration: 6000,
+        duration: 3000,
         dismissible: true,
         pauseOnHover: true,
     })
@@ -38,7 +38,6 @@ const user = ref('')
 
 const signIn = async () => {
     try { 
-        debugger
         showLoading.value = true
         user.value = await userStore.signInWithProvider(props.provider)
         router.push({ name: 'home' })

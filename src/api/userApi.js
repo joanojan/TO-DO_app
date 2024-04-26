@@ -45,12 +45,6 @@ export const logOut = async () => {
 
 export const loginWithProvider = async (provider) => {
   const { user, error } = await supabase.auth.signInWithOAuth({
-    //provider github sin opciones
-    // llevar la funciona  a userApi
-    //lo + personalizable: por parametro des de fuera componente,
-    //button login provider
-    //props del componente - provider: 'github',google,facebook,twitter
-    //secret una vez -> cualquier login provider
     provider: provider,
   })
   if (error) {

@@ -21,8 +21,8 @@ const triggerToast = (message) => {
     toast.open({
         message: message,
         type: 'error',
-        position: 'top',
-        duration: 6000,
+        position: 'bottom-right',
+        duration: 3000,
         dismissible: true,
         pauseOnHover: true,
     })
@@ -77,12 +77,12 @@ const signIn = () => {
                     <input type="password" id="password" v-model="form.password" placeholder="Password"
                         class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
-                <ButtonComponent type="submit"
+                <button-component type="submit"
                     class="w-full ml-0 bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
                     Sign Up
-                </ButtonComponent>
+                </button-component>
             </form>
-			<sign-in-prompt-component signIn @click="signIn" />
+			<sign-prompt-component signIn @click="signIn" />
         </div>
     </main>
 </template>
