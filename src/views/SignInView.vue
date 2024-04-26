@@ -65,7 +65,7 @@ const signUp = () => {
 				</div>
 				<div class="mb-4">
 					<label for="password" class="flex justify-between text-sm font-medium leading-6 my-2 text-gray-900">
-						Password <span><a class="text-sm font-medium">Forgot password?</a></span>
+						Password <span><a class="text-sm font-medium hover:text-yellow-300">Forgot password?</a></span>
 					</label>
 					<input type="password" id="password" v-model="password" placeholder="Password"
 						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
