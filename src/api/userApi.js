@@ -6,7 +6,7 @@ export const fetchActualUser = async () => {
   if (error) {
     throw new Error(error.message)
   }
-  
+
   return data?.session?.user || null
 }
 
@@ -45,10 +45,21 @@ export const logOut = async () => {
 
 export const loginWithProvider = async (provider) => {
   const { user, error } = await supabase.auth.signInWithOAuth({
-    provider: provider,
+    provider: provider
   })
   if (error) {
     throw new Error(error.message)
   }
   return user
+}
+
+//TODO: Implement this method
+export const resetPassword = async (email) => {
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: 'https://example.com/update-password'
+  })
+  if (error) {
+    throw new Error(error.message)
+  }
+  return data || undefined
 }

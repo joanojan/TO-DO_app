@@ -80,7 +80,7 @@ const filteredTasks = computed(() => {
 
         <ul>
             <li v-for="task in filteredTasks" :key="task.id"
-                class="my-2 flex-col border-slate-500 border-2 dark:text-white dark:bg-slate-700 bg-white opacity-75 ">
+                class="my-2 flex-col border-slate-500 border-2 dark:text-white dark:bg-slate-700 bg-white md:opacity-75 ">
                 <h3 class="text-xl px-4 font-bold">
                     {{ task.title }}
                 </h3>

@@ -8,6 +8,8 @@ import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification';
 import { useAppStore } from '@/stores/appStore'
 import SignPromptComponent from '@/components/SignPromptComponent.vue'
+import CheckEmailComponent from '@/components/CheckEmailComponent.vue'
+
 
 const router = useRouter()
 
@@ -58,11 +60,9 @@ const signIn = () => {
 <template>
     <main class="flex-col">
         <div v-if="success">
-            <h1 class="bg-red-400 text-white text-3xl p-5 text-center">
-                Please confirm your email to activate your account.
-            </h1>
+            <check-email-component />
         </div>
-        <div class="mt-10 sm:w-full sm:max-w-sm mx-auto">
+        <div v-if="!success" class="mt-10 sm:w-full sm:max-w-sm mx-auto">
 
             <form @submit.prevent="handleSubmit">
                 <div class="mb-4">

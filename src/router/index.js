@@ -24,7 +24,13 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue')
+    },
+    {
+      path: '/password-reset',
+      name: 'password-reset',
+      component: () => import('@/views/PasswordResetView.vue')
     }
+
   ]
 })
 
@@ -35,7 +41,7 @@ router.beforeEach(async (to, from, next) => {
     await userStore.fetchUser()
   }
 
-  if (userStore.user === null && to.name !== 'signin' && to.name !== 'signup') {
+  if (userStore.user === null && to.name !== 'signin' && to.name !== 'signup' && to.name !== 'password-reset') {
     next({ name: 'signin' })
   } else {
     next()

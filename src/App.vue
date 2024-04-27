@@ -30,11 +30,13 @@ watch(() => appStore.showLoading, (newValue) => {
 </template>
 
 <style scoped>
-div { 
-  background: url(/src/assets/icons/canigo.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+@media only screen and (min-width: 768px) {
+	div {
+		background: url(/src/assets/icons/canigo.jpg) no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
 }
 </style>
