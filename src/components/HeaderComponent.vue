@@ -26,7 +26,7 @@ const title = computed(() => {
 
 <template>
 	<header
-		class="max-w-screen-xl p-6 bg-white shadow-2xl md:shadow-blue-700 shadow-xl dark:shadow-slate-500 dark:bg-slate-800 dark:text-white mx-auto mb-4">
+		class="max-w-screen-xl p-6 bg-white md:shadow-blue-700 shadow-xl dark:shadow-slate-500 dark:bg-slate-800 dark:text-white mx-auto mb-4">
 		<div class="flex items-center justify-between mb-4">
 			<h1 class="text-xl font-bold text-center select-none">
 				TO_DO app

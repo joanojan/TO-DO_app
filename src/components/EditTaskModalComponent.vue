@@ -9,8 +9,6 @@ import { useAppStore } from '@/stores/appStore'
 
 const appStore = useAppStore()
 
-const { showLoading } = storeToRefs(appStore)
-
 const toast = useToast()
 
 const triggerToast = (message, type) => {
@@ -41,13 +39,13 @@ const updateTask = async () => {
   if (taskTitle.value.length < 4) { alert('Please give a title (Min 4 letters)') }
   else {
     try {
-      showLoading.value = true
+      appStore.displayLoading()
       await tasksStore.editATask(props.taskId, taskTitle.value)
       triggerToast('Edited task!', 'success')
     } catch (error) {
       triggerToast('Error on edit tasks!', 'error')
     } finally {
-      showLoading.value = false
+      appStore.hideLoading()
       emits('close')
     }
   }

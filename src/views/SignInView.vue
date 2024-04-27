@@ -1,31 +1,28 @@
 <script setup>
-import { ref } from 'vue'
-import { useUserStore } from '@/stores/userStore'
-import { useRouter } from 'vue-router'
-import ButtonComponent from '@/components/ButtonComponent.vue'
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification'
-import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
+import { useUserStore } from '@/stores/userStore'
 import { useAppStore } from '@/stores/appStore'
+import { useRouter } from 'vue-router'
+import ButtonComponent from '@/components/ButtonComponent.vue'
 import SignPromptComponent from '@/components/SignPromptComponent.vue'
 import SignInGoogleBtnComponent from '@/components/SignInGoogleBtnComponent.vue'
 import SignInGithubBtnComponent from '@/components/SignInGithubBtnComponent.vue'
 
 const appStore = useAppStore()
 
-const { showLoading } = storeToRefs(appStore)
-
 const toast = useToast()
 
 const triggerToast = (message) => {
-    toast.open({
-        message: message,
-        type: 'error',
-        position: 'bottom-right',
-        duration: 3000,
-        dismissible: true,
-        pauseOnHover: true,
-    })
+	toast.open({
+		message: message,
+		type: 'error',
+		position: 'bottom-right',
+		duration: 3000,
+		dismissible: true,
+		pauseOnHover: true,
+	})
 }
 
 const router = useRouter()
@@ -37,13 +34,15 @@ const password = ref('')
 
 const signIn = async () => {
 	try {
-		showLoading.value = true
+		appStore.displayLoading()
 		await userStore.signIn(user.value, password.value)
+		triggerToast('Sign in successfully', 'success')
 		router.push({ name: 'home' })
 	} catch (error) {
 		triggerToast('Something went wrong!')
+		triggerToast('Sing in failed', 'error')
 	} finally {
-		showLoading.value = false
+		appStore.hideLoading()
 	}
 }
 
@@ -69,7 +68,8 @@ const passwordReset = () => {
 				</div>
 				<div class="mb-4">
 					<label for="password" class="flex justify-between text-sm font-medium leading-6 my-2 text-gray-900">
-						Password <span @click="passwordReset" class="text-sm font-medium hover:text-yellow-300">Forgot password?</span>
+						Password <span @click="passwordReset" class="text-sm font-medium hover:text-yellow-300">Forgot
+							password?</span>
 					</label>
 					<input type="password" id="password" v-model="password" placeholder="Password"
 						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
@@ -82,10 +82,10 @@ const passwordReset = () => {
 					{{ userStore.error.message }}
 				</div>
 			</form>
-			
+
 			<sign-prompt-component @click="signUp" />
-			<sign-in-google-btn-component class="mx-auto my-10"/>
-			<sign-in-github-btn-component class="mx-auto my-8"/>
+			<sign-in-google-btn-component class="mx-auto my-10" />
+			<sign-in-github-btn-component class="mx-auto my-8" />
 		</div>
 	</main>
 </template>

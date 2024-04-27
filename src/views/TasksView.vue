@@ -10,16 +10,14 @@ import { useAppStore } from '@/stores/appStore'
 
 const appStore = useAppStore()
 
-const { showLoading } = storeToRefs(appStore)
-
 const toast = useToast()
 
-const triggerToast = (message) => {
+const triggerToast = (message, type) => {
     toast.open({
         message: message,
-        type: 'error',
-        position: 'top',
-        duration: 6000,
+        type: type,
+        position: 'bottom-right',
+        duration: 3000,
         dismissible: true,
         pauseOnHover: true,
     })
@@ -34,12 +32,13 @@ onMounted(async () => {
 		return
 	}
 	try {
-		showLoading.value = true
+		appStore.displayLoading()
 		await tasksStore.fetchTasks()
+		triggerToast('Tasks loaded successfully', 'info')
 	} catch (error) {
-		triggerToast('Error on fetch tasks!')
+		triggerToast('Error on fetch tasks!', 'error')
 	} finally {
-		showLoading.value = false
+		appStore.hideLoading()
 	}
 })
 </script>

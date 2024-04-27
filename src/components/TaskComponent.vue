@@ -4,7 +4,10 @@ import { ref, computed } from 'vue'
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import EditTaskModalComponent from '@/components/EditTaskModalComponent.vue'
 import { storeToRefs } from 'pinia'; import 'vue-toast-notification/dist/theme-bootstrap.css'
-import { useToast } from 'vue-toast-notification';
+import { useToast } from 'vue-toast-notification'
+import { useAppStore } from '@/stores/appStore'
+
+const appStore = useAppStore()
 
 const toast = useToast()
 
@@ -39,28 +42,37 @@ const closeEditModal = () => {
 
 const markTaskAsCompleted = async (taskId) => {
     try {
+        appStore.displayLoading()
         tasksStore.markCompletedTask(taskId)
         triggerToast('Completed task!', 'success')
     } catch (error) {
         triggerToast('Error on Mark as Completed!', 'error')
+    } finally {
+        appStore.hideLoading()
     }
 }
 
 const markTaskAsPending = async (taskId) => {
     try {
+        appStore.displayLoading()
         tasksStore.markPendingTask(taskId)
         triggerToast('Pending task!', 'success')
     } catch (error) {
         triggerToast('Error on Mark as Pending!', 'error')
+    } finally {
+        appStore.hideLoading()
     }
 }
 
 const deleteTask = async (taskId) => {
     try {
+        appStore.displayLoading()
         await tasksStore.deleteATask(taskId)
         triggerToast('Deleted task!', 'success')
     } catch (error) {
         triggerToast('Error on deleting task!', 'error')
+    } finally {
+        appStore.hideLoading()
     }
 }
 
