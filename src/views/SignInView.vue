@@ -51,7 +51,6 @@ const signUp = () => {
 	router.push({ name: 'signup' })
 }
 
-
 const passwordReset = () => {
 	router.push({ name: 'password-reset' })
 }

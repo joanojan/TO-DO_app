@@ -19,6 +19,7 @@ const title = computed(() => {
 	if (route.path === '/about') return 'About'
 	if (route.path === '/signin') return 'Sign in'
 	if (route.path === '/signup') return 'Sign up'
+	if (route.path === '/password-reset') return 'Password reset'
 	return ''
 })
 </script>
