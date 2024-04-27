@@ -1,17 +1,8 @@
 <script setup>
-import { useAppStore } from '@/stores/appStore'
-import { ref } from 'vue'
-
-const appStore = useAppStore()
-
-const darkMode = ref(appStore.darkMode)
-
 const toggleDarkMode = () => {
-    darkMode.value = !darkMode.value
     //update the DOM to reflect the changes
     document.body.classList.toggle('dark')
 }
-
 </script>
 <template>
     <main>

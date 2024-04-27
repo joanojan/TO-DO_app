@@ -27,7 +27,7 @@ export const editTask = async (taskId, newTitle) => {
   const { data, error } = await supabase
     .from('tasks')
     .update({ title: newTitle })
-    .eq('id', String(taskId))
+    .eq('id', taskId)
     .select()
 
   if (error) {
@@ -41,7 +41,7 @@ export const markAsCompleted = async (taskId) => {
   const { data, error } = await supabase
     .from('tasks')
     .update({ is_complete: true })
-    .eq('id', String(taskId))
+    .eq('id', taskId)
     .select()
 
   if (error) {
@@ -55,7 +55,7 @@ export const markAsNotCompleted = async (taskId) => {
   const { data, error } = await supabase
     .from('tasks')
     .update({ is_complete: false })
-    .eq('id', String(taskId))
+    .eq('id', taskId)
     .select()
 
   if (error) {
@@ -65,6 +65,8 @@ export const markAsNotCompleted = async (taskId) => {
   return data[0]
 }
 
+//Do you remember, we had an issue here with String?
+//The mystery stll not solved. It's working both ways...
 export const deleteTask = async (taskId) => {
   const { error } = await supabase
     .from('tasks')

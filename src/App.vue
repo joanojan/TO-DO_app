@@ -1,14 +1,14 @@
 <script setup>
 import HeaderComponent from '@/components/HeaderComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
-import { ref, watch } from 'vue'
+import { watch } from 'vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import { useAppStore } from '@/stores/appStore'
+import { storeToRefs } from 'pinia'
 
 const appStore = useAppStore()
 
-const showLoading = ref(appStore.showLoading)
-//const darkMode = ref(appStore.darkMode)
+const { showLoading } = storeToRefs(appStore)
 
 watch(() => appStore.showLoading, (newValue) => {
 	showLoading.value = newValue
@@ -17,7 +17,7 @@ watch(() => appStore.showLoading, (newValue) => {
 
 <template>
 	<base target="_blank">
-	<div class="min-h-screen flex-col">
+	<div class="min-h-screen flex-col dark:bg-slate-800">
 		<loading-component v-show="showLoading" />
 		<main class="flex-col">
 			<header-component />

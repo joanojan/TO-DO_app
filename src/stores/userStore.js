@@ -10,8 +10,6 @@ export const useUserStore = defineStore('user', () => {
 
   // Getters
   const userName = computed(() => {
-    //TODO: HANDLE EVERY OPTION, providers or email login
-    //if loginProvider with google:
     return user.value?.user_metadata.full_name || ''
   })
 
