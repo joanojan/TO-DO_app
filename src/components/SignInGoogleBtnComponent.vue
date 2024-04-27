@@ -1,5 +1,5 @@
 <script setup>
-import SignInProviderBtnComponent from '@/components/SignInProviderBtnComponent.vue';{}
+import SignInProviderBtnComponent from '@/components/SignInProviderBtnComponent.vue'
 </script>
 
 <template>

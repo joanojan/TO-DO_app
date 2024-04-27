@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { fetchActualUser, createNewUser, logIn, logOut, loginWithProvider } from '@/api/userApi'
 
@@ -7,6 +7,12 @@ export const useUserStore = defineStore('user', () => {
   const user = ref(undefined)
 
   const error = ref(undefined)
+
+  // Getters
+  const userName = computed(() => {
+    //TODO
+    return user.value?.name || ''
+  })
 
   // Actions -> Errors to be handled by the views/components
   async function fetchUser() {
@@ -29,11 +35,14 @@ export const useUserStore = defineStore('user', () => {
     user.value = await loginWithProvider(provider)
   }
 
+
+
   return {
     // State
     user,
     error,
     // Getters
+    userName,
     // Actions
     fetchUser,
     signUp,
