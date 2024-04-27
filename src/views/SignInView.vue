@@ -4,7 +4,6 @@ import { useToast } from 'vue-toast-notification'
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { useAppStore } from '@/stores/appStore'
-import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import SignPromptComponent from '@/components/SignPromptComponent.vue'
@@ -12,8 +11,6 @@ import SignInGoogleBtnComponent from '@/components/SignInGoogleBtnComponent.vue'
 import SignInGithubBtnComponent from '@/components/SignInGithubBtnComponent.vue'
 
 const appStore = useAppStore()
-
-const { showLoading } = storeToRefs(appStore)
 
 const toast = useToast()
 
@@ -37,13 +34,15 @@ const password = ref('')
 
 const signIn = async () => {
 	try {
-		showLoading.value = true
+		appStore.displayLoading()
 		await userStore.signIn(user.value, password.value)
+		triggerToast('Sign in successfully', 'success')
 		router.push({ name: 'home' })
 	} catch (error) {
 		triggerToast('Something went wrong!')
+		triggerToast('Sing in failed', 'error')
 	} finally {
-		showLoading.value = false
+		appStore.hideLoading()
 	}
 }
 

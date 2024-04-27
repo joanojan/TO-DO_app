@@ -19,10 +19,10 @@ const { showLoading } = storeToRefs(appStore)
 
 const toast = useToast()
 
-const triggerToast = (message) => {
+const triggerToast = (message, type) => {
     toast.open({
         message: message,
-        type: 'error',
+        type: type,
         position: 'bottom-right',
         duration: 3000,
         dismissible: true,
@@ -42,13 +42,14 @@ const form = ref({
 
 const handleSubmit = async () => {
     try {
-        showLoading.value = true
+        appStore.displayLoading()
         await userStore.signUp(form.value.email, form.value.password)
         success.value = true
+        triggerToast("Email sent to " + form.value.email, "success")
     } catch (error) {
-        triggerToast('Something went wrong!')
+        triggerToast('Something went wrong!','error')
     } finally {
-        showLoading.value = false
+        appStore.hideLoading()
     }
 }
 

@@ -4,7 +4,6 @@ import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification'
-import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/stores/appStore'
 
 const props = defineProps({
@@ -14,8 +13,6 @@ const props = defineProps({
 //The component will be rehused for every provider.
 
 const appStore = useAppStore()
-
-const { showLoading } = storeToRefs(appStore)
 
 const toast = useToast()
 
@@ -37,14 +34,14 @@ const userStore = useUserStore()
 const user = ref('')
 
 const signIn = async () => {
-    try { 
-        showLoading.value = true
+    try {
+        appStore.displayLoading()
         user.value = await userStore.signInWithProvider(props.provider)
         router.push({ name: 'home' })
     } catch (error) {
         triggerToast('Something went wrong!')
     } finally {
-        showLoading.value = false
+        appStore.hideLoading()
     }
 }
 </script>

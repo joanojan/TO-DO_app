@@ -3,11 +3,9 @@ import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { useTasksStore } from '@/stores/tasksStore'
 import ButtonComponent from './ButtonComponent.vue';
+import { useAppStore } from '@/stores/appStore'
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification';
-import { useAppStore } from '@/stores/appStore'
-
-const appStore = useAppStore()
 
 const toast = useToast()
 
@@ -22,6 +20,7 @@ const triggerToast = (message, type) => {
   })
 }
 
+const appStore = useAppStore()
 const userStore = useUserStore()
 const tasksStore = useTasksStore()
 
@@ -46,7 +45,7 @@ async function addTask() {
 </script>
 
 <template>
-  <div class="flex items-center mx-auto my-4 md:max-w-xl max-w-sm hover:bg-white">
+  <div class="flex items-center mx-auto my-4 md:max-w-xl max-w-sm black:hover:bg-white shadow-xl">
     <label for="newTask" class="sr-only">Enter new task</label>
     <input type="text" v-model="newTask" id="newTask" placeholder="Enter new task" aria-label="New task input"
       class="flex-grow px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
