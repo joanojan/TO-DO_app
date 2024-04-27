@@ -1,12 +1,19 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { fetchActualUser, createNewUser, logIn, logOut, loginWithProvider } from '@/api/userApi'
+import { fetchActualUser, createNewUser, logIn, logOut, loginWithProvider, resetPassword } from '@/api/userApi'
 
 export const useUserStore = defineStore('user', () => {
   // State
   const user = ref(undefined)
 
   const error = ref(undefined)
+
+  // Getters
+  const userName = computed(() => {
+    //TODO: HANDLE EVERY OPTION, providers or email login
+    //if loginProvider with google:
+    return user.value?.user_metadata.full_name || ''
+  })
 
   // Actions -> Errors to be handled by the views/components
   async function fetchUser() {
@@ -25,8 +32,13 @@ export const useUserStore = defineStore('user', () => {
     user.value = await logOut()
   }
 
-  async function signInWithGoogle() {
-    user.value = await loginWithProvider('google')
+  async function signInWithProvider(provider) {
+    user.value = await loginWithProvider(provider)
+  }
+
+  // TODO: password reset supabase functionality
+  async function passwordReset(email) {
+    user.value = await resetPassword(email)
   }
 
   return {
@@ -34,11 +46,13 @@ export const useUserStore = defineStore('user', () => {
     user,
     error,
     // Getters
+    userName,
     // Actions
     fetchUser,
     signUp,
     signIn,
     signOut,
-    signInWithGoogle
+    signInWithProvider,
+    passwordReset
   }
 })

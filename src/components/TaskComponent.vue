@@ -12,13 +12,12 @@ const triggerToast = (message, type) => {
     toast.open({
         message: message,
         type: type,
-        position: 'top',
-        duration: 6000,
+        position: 'bottom-right',
+        duration: 3000,
         dismissible: true,
         pauseOnHover: true,
     })
 }
-
 
 const props = defineProps({
     completed: Boolean
@@ -81,7 +80,7 @@ const filteredTasks = computed(() => {
 
         <ul>
             <li v-for="task in filteredTasks" :key="task.id"
-                class="my-2 flex-col border-slate-500 border-2 dark:text-white dark:bg-slate-700">
+                class="my-2 flex-col border-slate-500 border-2 dark:text-white dark:bg-slate-700 bg-white md:opacity-75 ">
                 <h3 class="text-xl px-4 font-bold">
                     {{ task.title }}
                 </h3>
@@ -93,6 +92,6 @@ const filteredTasks = computed(() => {
                 <button-component @click="deleteTask(task.id)">Delete</button-component>
             </li>
         </ul>
-        <EditTaskModalComponent v-if="selectedTaskId" :taskId="selectedTaskId" @close="closeEditModal" />
+        <edit-task-modal-component v-if="selectedTaskId" :taskId="selectedTaskId" @close="closeEditModal" />
     </main>
 </template>

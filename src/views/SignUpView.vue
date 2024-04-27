@@ -7,7 +7,9 @@ import ButtonComponent from "@/components/ButtonComponent.vue"
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useToast } from 'vue-toast-notification';
 import { useAppStore } from '@/stores/appStore'
-import SignInPromptComponent from '@/components/SignInPromptComponent.vue'
+import SignPromptComponent from '@/components/SignPromptComponent.vue'
+import CheckEmailComponent from '@/components/CheckEmailComponent.vue'
+
 
 const router = useRouter()
 
@@ -21,8 +23,8 @@ const triggerToast = (message) => {
     toast.open({
         message: message,
         type: 'error',
-        position: 'top',
-        duration: 6000,
+        position: 'bottom-right',
+        duration: 3000,
         dismissible: true,
         pauseOnHover: true,
     })
@@ -57,12 +59,10 @@ const signIn = () => {
 
 <template>
     <main class="flex-col">
-        <div v-show="success">
-            <h1 class="bg-red-400 text-white text-3xl p-5 text-center">
-                Please confirm your email to activate your account.
-            </h1>
+        <div v-if="success">
+            <check-email-component />
         </div>
-        <div class="mt-10 sm:w-full sm:max-w-sm mx-auto">
+        <div v-if="!success" class="mt-10 sm:w-full sm:max-w-sm mx-auto">
 
             <form @submit.prevent="handleSubmit">
                 <div class="mb-4">
@@ -77,12 +77,12 @@ const signIn = () => {
                     <input type="password" id="password" v-model="form.password" placeholder="Password"
                         class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
-                <ButtonComponent type="submit"
+                <button-component type="submit"
                     class="w-full ml-0 bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
                     Sign Up
-                </ButtonComponent>
+                </button-component>
             </form>
-            <sign-in-prompt-component @click="signIn"/>
+			<sign-prompt-component signIn @click="signIn" />
         </div>
     </main>
 </template>
