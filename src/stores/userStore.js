@@ -10,8 +10,9 @@ export const useUserStore = defineStore('user', () => {
 
   // Getters
   const userName = computed(() => {
-    //TODO
-    return user.value?.name || ''
+    //TODO: HANDLE EVERY OPTION, providers or email login
+    //if loginProvider with google:
+    return user.value?.user_metadata.full_name || ''
   })
 
   // Actions -> Errors to be handled by the views/components

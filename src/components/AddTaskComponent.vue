@@ -49,7 +49,7 @@ async function addTask() {
 </script>
 
 <template>
-  <div class="flex items-center mx-auto my-4 max-w-xl hover:bg-white">
+  <div class="flex items-center mx-auto my-4 md:max-w-xl max-w-sm hover:bg-white">
     <label for="newTask" class="sr-only">Enter new task</label>
     <input type="text" v-model="newTask" id="newTask" placeholder="Enter new task" aria-label="New task input"
       class="flex-grow px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />

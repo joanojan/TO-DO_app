@@ -3,7 +3,7 @@ import { useUserStore } from '@/stores/userStore'
 import { useRoute } from 'vue-router'
 import LogoComponent from '@/components/LogoComponent.vue'
 import UserComponent from '@/components/UserComponent.vue'
-import { watch, computed } from 'vue'
+import { computed } from 'vue'
 import DarkModeToggleButton from './DarkModeToggleButton.vue'
 import { storeToRefs } from 'pinia'
 
@@ -13,10 +13,6 @@ const userStore = useUserStore()
 const route = useRoute()
 
 const { user } = storeToRefs(userStore)
-
-watch(() => userStore.user, (newValue) => {
-	user.value = newValue
-})
 
 const title = computed(() => {
 	if (route.path === '/') return 'Tasks'
@@ -28,9 +24,8 @@ const title = computed(() => {
 </script>
 
 <template>
-	<!-- <div class="md:h-4"></div> -->
 	<header
-		class="max-w-screen-xl p-6 bg-white shadow-2xl shadow-blue-700 dark:bg-slate-800 dark:text-white mx-auto mb-4">
+		class="max-w-screen-xl p-6 bg-white shadow-2xl md:shadow-blue-700 shadow-xl dark:shadow-slate-500 dark:bg-slate-800 dark:text-white mx-auto mb-4">
 		<div class="flex items-center justify-between mb-4">
 			<h1 class="text-xl font-bold text-center select-none">
 				TO_DO app
