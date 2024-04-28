@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
 import 'vue-toast-notification/dist/theme-bootstrap.css'
@@ -29,15 +28,10 @@ const router = useRouter()
 
 const userStore = useUserStore()
 
-const user = ref('')
-
 const signIn = async () => {
     try {
-        document.querySelectorAll('button').forEach((button) => {
-            button.disabled = true
-        })
         appStore.showLoading()
-        user.value = await userStore.signInWithProvider(props.provider)
+        await userStore.signInWithProvider(props.provider)
         router.push({ name: 'home' })
         triggerToast('Signed in successfully', 'info')
     } catch (error) {
