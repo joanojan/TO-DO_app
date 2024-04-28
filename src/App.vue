@@ -8,10 +8,10 @@ import { storeToRefs } from 'pinia'
 
 const appStore = useAppStore()
 
-const { showLoading } = storeToRefs(appStore)
+const { isLoading } = storeToRefs(appStore)
 
-watch(() => appStore.showLoading, (newValue) => {
-	showLoading.value = newValue
+watch(() => appStore.isLoading, (newValue) => {
+	isLoading.value = newValue
 })
 </script>
 

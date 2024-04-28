@@ -66,23 +66,23 @@ const signIn = () => {
         </div>
         <div v-if="!success" class="mt-10 sm:w-full sm:max-w-sm mx-auto">
 
-            <form @submit.prevent="handleSubmit" class="bg-white p-4 rounded-md">
+            <form @submit.prevent="handleSubmit" class="bg-white p-4 dark:bg-slate-800 rounded-md">
                 <div class="mb-4">
-                    <label for="email" class="block my-2 text-sm font-medium leading-6 text-gray-900">Email
+                    <label for="email" class="text-white block my-2 text-sm font-medium leading-6 text-gray-900">Email
                         address</label>
                     <input type="email" id="email" v-model="form.email" placeholder="Email"
-                        class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
+                        class="dark:bg-slate-700 dark:paceholder-white form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
                 </div>
                 <div class="mb-4">
                     <label for="password"
-                        class="block text-sm font-medium leading-6 my-2 text-gray-900">Password</label>
+                        class="text-white block text-sm font-medium leading-6 my-2 text-gray-900">Password</label>
                     <input type="password" id="password" v-model="form.password" placeholder="Password"
-                        class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
-                    <label for="confirm-password" class="block text-sm font-medium leading-6 my-2 text-gray-900">Confirm
+                        class="dark:bg-slate-700 dark:paceholder-white form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
+                    <label for="confirm-password" class="text-white block text-sm font-medium leading-6 my-2 text-gray-900">Confirm
                         password</label>
                     <input type="password" id="confirm-password" v-model="form.confirmPassword"
                         placeholder="Confirm-password"
-                        class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
+                        class="dark:bg-slate-700 dark:paceholder-white form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
                 </div>
                 <button-component type="submit"
                     class="ml-0 w-full bg-slate-500 text-white rounded-md py-2 px-4 hover:bg-slate-600 focus:outline-none">
