@@ -72,14 +72,14 @@ const signIn = () => {
                         address</label>
                     <input type="email" id="email" v-model="form.email" placeholder="Email"
                         class="dark:bg-slate-700 dark:paceholder-white form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
-                </div>
-                <div class="mb-4">
                     <label for="password"
                         class="text-white block text-sm font-medium leading-6 my-2 text-gray-900">Password</label>
                     <input type="password" id="password" v-model="form.password" placeholder="Password"
                         class="dark:bg-slate-700 dark:paceholder-white form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
-                    <label for="confirm-password" class="text-white block text-sm font-medium leading-6 my-2 text-gray-900">Confirm
-                        password</label>
+                    <label for="confirm-password"
+                        class="text-white block text-sm font-medium leading-6 my-2 text-gray-900">
+                        Confirm password
+                    </label>
                     <input type="password" id="confirm-password" v-model="form.confirmPassword"
                         placeholder="Confirm-password"
                         class="dark:bg-slate-700 dark:paceholder-white form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">

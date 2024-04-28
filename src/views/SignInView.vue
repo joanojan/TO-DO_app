@@ -64,8 +64,6 @@ const passwordReset = () => {
 					</label>
 					<input type="email" id="email" v-model="user" placeholder="Email"
 						class="dark:caret-white dark:bg-slate-700 dark:paceholder-white form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
-				</div>
-				<div class="mb-4">
 					<label for="password" class="flex justify-between dark:text-white block text-sm font-medium leading-6 my-2 text-gray-900">
 						Password <span @click="passwordReset" class="text-sm font-medium hover:text-yellow-300">Forgot
 							password?</span>
@@ -77,9 +75,6 @@ const passwordReset = () => {
 					class="ml-0 w-full bg-slate-500 text-white rounded-md py-2 px-4 hover:bg-slate-600 focus:outline-none">
 					Sign In
 				</button-component>
-				<div v-if="userStore.error" class="text-red-500 text-sm mt-2">
-					{{ userStore.error.message }}
-				</div>
 			</form>
 
 			<sign-prompt-component @click="signUp" />
