@@ -32,7 +32,6 @@ const triggerToast = (message, type) => {
 
 const userStore = useUserStore()
 
-//On success I display the confirm-email message
 const success = ref(false)
 
 const form = ref({
@@ -42,7 +41,7 @@ const form = ref({
 
 const handleSubmit = async () => {
     try {
-        appStore.displayLoading()
+        appStore.sowLoading()
         await userStore.signUp(form.value.email, form.value.password)
         success.value = true
         triggerToast("Email sent to " + form.value.email, "success")
@@ -76,10 +75,10 @@ const signIn = () => {
                     <label for="password"
                         class="block text-sm font-medium leading-6 my-2 text-gray-900">Password</label>
                     <input type="password" id="password" v-model="form.password" placeholder="Password"
-                        class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        class="ml-0 w-full bg-slate-500 text-white rounded-md py-2 px-4 hover:bg-slate-600 focus:outline-none">
                 </div>
                 <button-component type="submit"
-                    class="w-full ml-0 bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
+                class="ml-0 w-full bg-slate-500 text-white rounded-md py-2 px-4 hover:bg-slate-600 focus:outline-none">
                     Sign Up
                 </button-component>
             </form>

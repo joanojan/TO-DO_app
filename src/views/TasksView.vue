@@ -32,7 +32,7 @@ onMounted(async () => {
 		return
 	}
 	try {
-		appStore.displayLoading()
+		appStore.showLoading()
 		await tasksStore.fetchTasks()
 		triggerToast('Tasks loaded successfully', 'info')
 	} catch (error) {

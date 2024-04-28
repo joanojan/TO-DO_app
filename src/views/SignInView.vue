@@ -7,8 +7,7 @@ import { useAppStore } from '@/stores/appStore'
 import { useRouter } from 'vue-router'
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import SignPromptComponent from '@/components/SignPromptComponent.vue'
-import SignInGoogleBtnComponent from '@/components/SignInGoogleBtnComponent.vue'
-import SignInGithubBtnComponent from '@/components/SignInGithubBtnComponent.vue'
+import SignInProviderBtnComponent from '@/components/SignInProviderBtnComponent.vue'
 
 const appStore = useAppStore()
 
@@ -34,7 +33,7 @@ const password = ref('')
 
 const signIn = async () => {
 	try {
-		appStore.displayLoading()
+		appStore.showLoading()
 		await userStore.signIn(user.value, password.value)
 		triggerToast('Sign in successfully', 'success')
 		router.push({ name: 'home' })
@@ -75,7 +74,7 @@ const passwordReset = () => {
 						class="form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm shadow-outline focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
 				</div>
 				<button-component type="submit"
-					class="ml-0 w-full bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-500 focus:outline-none">
+					class="ml-0 w-full bg-slate-500 text-white rounded-md py-2 px-4 hover:bg-slate-600 focus:outline-none">
 					Sign In
 				</button-component>
 				<div v-if="userStore.error" class="text-red-500 text-sm mt-2">
@@ -84,8 +83,8 @@ const passwordReset = () => {
 			</form>
 
 			<sign-prompt-component @click="signUp" />
-			<sign-in-google-btn-component class="mx-auto my-10" />
-			<sign-in-github-btn-component class="mx-auto my-8" />
+			<sign-in-provider-btn-component provider="google" class="mx-auto my-10" />
+			<sign-in-provider-btn-component provider="github" class="mx-auto my-8" />
 		</div>
 	</main>
 </template>

@@ -42,7 +42,7 @@ const closeEditModal = () => {
 
 const markTaskAsCompleted = async (taskId) => {
     try {
-        appStore.displayLoading()
+        appStore.showLoading()
         tasksStore.markCompletedTask(taskId)
         triggerToast('Completed task!', 'success')
     } catch (error) {
@@ -54,7 +54,7 @@ const markTaskAsCompleted = async (taskId) => {
 
 const markTaskAsPending = async (taskId) => {
     try {
-        appStore.displayLoading()
+        appStore.showLoading()
         tasksStore.markPendingTask(taskId)
         triggerToast('Pending task!', 'success')
     } catch (error) {
@@ -66,7 +66,7 @@ const markTaskAsPending = async (taskId) => {
 
 const deleteTask = async (taskId) => {
     try {
-        appStore.displayLoading()
+        appStore.showLoading()
         await tasksStore.deleteATask(taskId)
         triggerToast('Deleted task!', 'success')
     } catch (error) {

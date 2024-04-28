@@ -10,8 +10,6 @@ const props = defineProps({
     provider: String
 })
 
-//The component will be rehused for every provider.
-
 const appStore = useAppStore()
 
 const toast = useToast()
@@ -35,7 +33,7 @@ const user = ref('')
 
 const signIn = async () => {
     try {
-        appStore.displayLoading()
+        appStore.showLoading()
         user.value = await userStore.signInWithProvider(props.provider)
         router.push({ name: 'home' })
     } catch (error) {
@@ -47,7 +45,15 @@ const signIn = async () => {
 </script>
 
 <template>
-    <button @click="signIn" class="flex items-center">
-        <slot />
+    <button @click="signIn" class="hover:bg-slate-400 hover:border-2 flex items-center bg-white dark:bg-slate-800 dark:text-white rounded-lg p-2">
+        <div v-if="provider === 'google'" class="flex">
+            <img src="@/assets/icons/google.svg" alt="Google" class="w-6 h-6 mx-2" />
+            <span class="mx-2">Sign in with Google</span>
+        </div>
+        <div v-if="provider === 'github'" class="flex">
+            <img src="@/assets/icons/github.svg" alt="Github" class="w-6 h-6 mx-2 dark:hidden" />
+            <img src="@/assets/icons/github-dark.svg" alt="Github" class="w-6 h-6 mx-2 hidden dark:flex" />
+            <span class="mx-2">Sign in with Github</span>
+        </div>
     </button>
 </template>
