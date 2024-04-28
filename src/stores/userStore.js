@@ -5,9 +5,7 @@ import { fetchActualUser, createNewUser, logIn, logOut, loginWithProvider, reset
 export const useUserStore = defineStore('user', () => {
   // State
   const user = ref(undefined)
-
-  const error = ref(undefined)
-
+  
   // Getters
   const userName = computed(() => {
     return user.value?.user_metadata.full_name || ''
@@ -42,7 +40,6 @@ export const useUserStore = defineStore('user', () => {
   return {
     // State
     user,
-    error,
     // Getters
     userName,
     // Actions
