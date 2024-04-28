@@ -27,7 +27,7 @@ const { isLoading } = storeToRefs(appStore)
 <style scoped>
 @media only screen and (min-width: 768px) {
 	div {
-		background: url(/src/assets/icons/canigo.jpg) no-repeat center center fixed;
+		background: url(/src/assets/background/mario.jpg) no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;

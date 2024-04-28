@@ -47,7 +47,7 @@ onMounted(async () => {
 	<main class="flex-col mt-5">
 		<add-task class="shadow-xl rounded pl-2 dark:bg-slate-500" />
 		<div class="">
-			<section class="lg:flex justify-center">
+			<section class="md:flex justify-center">
 				<TaskComponent :completed="false" />
 				<TaskComponent :completed="true" />
 			</section>
