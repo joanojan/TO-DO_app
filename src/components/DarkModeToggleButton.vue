@@ -1,14 +1,17 @@
 <script setup>
-const toggleDarkMode = () => {
-    //update the DOM to reflect the changes
-    document.body.classList.toggle('dark')
-}
+import { useAppStore } from '@/stores/appStore'
+import { storeToRefs } from 'pinia';
+
+const appStore = useAppStore()
+
+const { darkMode }= storeToRefs(appStore)
+
 </script>
 <template>
     <main>
-        <button @click="toggleDarkMode" class="w-12 bg-slate-200 justify-center rounded-full border-2 flex">
-            <img src="@/assets/icons/moon.svg" alt="dark-mode" v-if="!darkMode">
-            <img src="@/assets/icons/sun.svg" alt="dark-mode" v-if="darkMode" class="justify-end">
+        <button @click="appStore.toogleDarkMode()" class="w-12 bg-slate-200 justify-center rounded-full border-2 flex">
+            <img src="/src/assets/icons/moon.svg" alt="dark-mode" v-if="darkMode">
+            <img src="/src/assets/icons/sun.svg" alt="light-mode" v-if="!darkMode">
         </button>
     </main>
 </template>

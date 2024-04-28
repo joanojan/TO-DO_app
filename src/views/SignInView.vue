@@ -13,10 +13,10 @@ const appStore = useAppStore()
 
 const toast = useToast()
 
-const triggerToast = (message) => {
+const triggerToast = (message, type) => {
 	toast.open({
 		message: message,
-		type: 'error',
+		type: type,
 		position: 'bottom-right',
 		duration: 3000,
 		dismissible: true,

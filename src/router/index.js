@@ -35,19 +35,27 @@ const router = createRouter({
       name: 'not-found',
       component: () => import('@/views/NotFoundView.vue')
     }
-
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore()
-  
+
   if (userStore.user === undefined) {
     await userStore.fetchUser()
   }
 
-  if (userStore.user === null && to.name !== 'signin' && to.name !== 'signup' && to.name !== 'password-reset') {
+  if (
+    userStore.user === null &&
+    to.name !== 'signin' &&
+    to.name !== 'signup' &&
+    to.name !== 'password-reset'
+  ) {
     next({ name: 'signin' })
+  }
+
+  if (userStore.user && to.name === 'password-reset') {
+    next({ name: 'home' })
   } else {
     next()
   }
