@@ -39,7 +39,7 @@ const updateTask = async () => {
   if (taskTitle.value.length < 4) { alert('Please give a title (Min 4 letters)') }
   else {
     try {
-      appStore.displayLoading()
+      appStore.showLoading()
       await tasksStore.editATask(props.taskId, taskTitle.value)
       triggerToast('Edited task!', 'success')
     } catch (error) {

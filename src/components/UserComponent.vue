@@ -40,7 +40,7 @@ const userName = user.value?.user_metadata.full_name || null
 
 const signOut = async () => {
     try {
-        appStore.displayLoading()
+        appStore.showLoading()
         await userStore.signOut()
         triggerToast('Signed out successfully', 'info')
         router.push({ name: 'signin' })

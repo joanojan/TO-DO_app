@@ -66,7 +66,7 @@ const markTaskAsPending = async (taskId) => {
 
 const deleteTask = async (taskId) => {
     try {
-        appStore.displayLoading()
+        appStore.showLoading()
         await tasksStore.deleteATask(taskId)
         triggerToast('Deleted task!', 'success')
     } catch (error) {

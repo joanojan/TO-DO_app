@@ -2,14 +2,14 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useAppStore = defineStore('app', () => {
-  const showLoading = ref(false)
+  const isLoading = ref(false)
 
-  function displayLoading() {
-    showLoading.value = true
+  function showLoading() {
+    isLoading.value = true
   }
   function hideLoading() {
-    showLoading.value = false
+    isLoading.value = false
   }
 
-  return { showLoading, displayLoading, hideLoading }
+  return { isLoading, showLoading, hideLoading }
 })
