@@ -31,13 +31,14 @@ async function addTask() {
     if (newTask.value.length < 4) {
       triggerToast('Minimum length is 4 letters', 'warning')
     } else {
-      appStore.displayLoading()
+      appStore.showLoading()
       await tasksStore.addNewTask(userStore.user.id, newTask.value)
       newTask.value = ''
       triggerToast('Added Task!', 'success')
     }
   } catch (error) {
     triggerToast('Error trying to add task', 'error')
+    console.log(error)
   } finally {
     appStore.hideLoading()
   }
