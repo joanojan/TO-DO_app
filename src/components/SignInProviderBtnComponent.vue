@@ -14,10 +14,10 @@ const appStore = useAppStore()
 
 const toast = useToast()
 
-const triggerToast = (message) => {
+const triggerToast = (message, type) => {
     toast.open({
         message: message,
-        type: 'error',
+        type: type,
         position: 'bottom-right',
         duration: 3000,
         dismissible: true,
@@ -33,11 +33,15 @@ const user = ref('')
 
 const signIn = async () => {
     try {
+        document.querySelectorAll('button').forEach((button) => {
+            button.disabled = true
+        })
         appStore.showLoading()
         user.value = await userStore.signInWithProvider(props.provider)
         router.push({ name: 'home' })
+        triggerToast('Signed in successfully', 'info')
     } catch (error) {
-        triggerToast('Something went wrong!')
+        triggerToast('Something went wrong!', 'error')
     } finally {
         appStore.hideLoading()
     }
@@ -45,15 +49,15 @@ const signIn = async () => {
 </script>
 
 <template>
-    <button @click="signIn" class="hover:bg-slate-400 hover:border-2 flex items-center bg-white dark:bg-slate-800 dark:text-white rounded-lg p-2">
-        <div v-if="provider === 'google'" class="flex">
-            <img src="@/assets/icons/google.svg" alt="Google" class="w-6 h-6 mx-2" />
-            <span class="mx-2">Sign in with Google</span>
-        </div>
-        <div v-if="provider === 'github'" class="flex">
-            <img src="@/assets/icons/github.svg" alt="Github" class="w-6 h-6 mx-2 dark:hidden" />
-            <img src="@/assets/icons/github-dark.svg" alt="Github" class="w-6 h-6 mx-2 hidden dark:flex" />
-            <span class="mx-2">Sign in with Github</span>
-        </div>
-    </button>
+        <button @click="signIn" class="hover:bg-slate-400 border-2 border-tranparent hover:border-black flex items-center bg-white dark:bg-slate-800 dark:text-white rounded-lg p-2">
+            <div v-if="provider === 'google'" class="flex">
+                <img src="@/assets/icons/google.svg" alt="Google" class="w-6 h-6 mx-2" />
+                <span class="mx-2">Sign in with Google</span>
+            </div>
+            <div v-if="provider === 'github'" class="flex">
+                <img src="@/assets/icons/github.svg" alt="Github" class="w-6 h-6 mx-2 dark:hidden" />
+                <img src="@/assets/icons/github-dark.svg" alt="Github" class="w-6 h-6 mx-2 hidden dark:flex" />
+                <span class="mx-2">Sign in with Github</span>
+            </div>
+        </button>
 </template>

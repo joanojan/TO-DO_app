@@ -1,7 +1,6 @@
 <script setup>
 import HeaderComponent from '@/components/HeaderComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
-import { watch } from 'vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import { useAppStore } from '@/stores/appStore'
 import { storeToRefs } from 'pinia'
@@ -9,10 +8,6 @@ import { storeToRefs } from 'pinia'
 const appStore = useAppStore()
 
 const { isLoading } = storeToRefs(appStore)
-
-watch(() => appStore.isLoading, (newValue) => {
-	isLoading.value = newValue
-})
 </script>
 
 <template>
