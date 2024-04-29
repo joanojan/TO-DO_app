@@ -9,7 +9,6 @@ import { storeToRefs } from 'pinia'
 
 const userStore = useUserStore()
 
-
 const route = useRoute()
 
 const { user } = storeToRefs(userStore)

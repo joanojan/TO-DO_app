@@ -3,18 +3,16 @@ import AddTask from '@/components/AddTaskComponent.vue'
 import TaskComponent from '@/components/TaskComponent.vue'
 import { onMounted } from 'vue'
 import { useTasksStore } from '@/stores/tasksStore'
-import 'vue-toast-notification/dist/theme-bootstrap.css'
-import { useToast } from 'vue-toast-notification';
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/stores/appStore'
-
-const appStore = useAppStore()
+import { useToast } from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-bootstrap.css'
 
 const toast = useToast()
 
 const triggerToast = (message, type) => {
-    toast.open({
-        message: message,
+	toast.open({
+		message: message,
         type: type,
         position: 'bottom-right',
         duration: 3000,
@@ -26,6 +24,8 @@ const triggerToast = (message, type) => {
 const tasksStore = useTasksStore()
 
 const { tasks } = storeToRefs(tasksStore)
+
+const appStore = useAppStore()
 
 onMounted(async () => {
 	if (tasks.value.length) {
@@ -47,7 +47,7 @@ onMounted(async () => {
 	<main class="flex-col mt-5">
 		<add-task class="shadow-xl rounded pl-2 dark:bg-slate-500" />
 		<div class="">
-			<section class="lg:flex justify-center">
+			<section class="md:flex justify-center">
 				<TaskComponent :completed="false" />
 				<TaskComponent :completed="true" />
 			</section>

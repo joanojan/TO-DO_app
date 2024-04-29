@@ -12,7 +12,7 @@ const { isLoading } = storeToRefs(appStore)
 
 <template>
 	<base target="_blank">
-	<div class="min-h-screen flex-col dark:bg-slate-800">
+	<div class="min-h-screen flex-col dark:bg-slate-600 bg-mario-light dark:bg-mario-dark bg-bottom bg-no-repeat bg-cover">
 		<loading-component v-show="isLoading" />
 		<main class="flex-col">
 			<header-component />
@@ -23,15 +23,3 @@ const { isLoading } = storeToRefs(appStore)
 		<footer-component />
 	</div>
 </template>
-
-<style scoped>
-@media only screen and (min-width: 768px) {
-	div {
-		background: url(/src/assets/icons/canigo.jpg) no-repeat center center fixed;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-	}
-}
-</style>

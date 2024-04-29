@@ -82,7 +82,7 @@ const filteredTasks = computed(() => {
 </script>
 
 <template>
-    <main class="flex-col lg:w-1/2 sm:w-full lg:mx-4 md:max-w-xl mx-auto">
+    <main class="flex-col md:w-1/2 sm:w-full md:mx-4 md:max-w-xs lg:max-w-lg mx-auto">
         <h1 class="p-2 font-bold text-lg text-center select-none" :class="{
             'bg-green-500 text-white': completed,
             'bg-red-500 text-white': !completed
@@ -92,7 +92,7 @@ const filteredTasks = computed(() => {
 
         <ul>
             <li v-for="task in filteredTasks" :key="task.id"
-                class="my-2 flex-col border-slate-500 border-2 dark:text-white dark:bg-slate-700 bg-white md:opacity-75 ">
+                class="my-2 flex-col border-slate-500 border-2 dark:text-white dark:bg-slate-800 bg-white">
                 <h3 class="text-xl px-4 font-bold">
                     {{ task.title }}
                 </h3>

@@ -31,6 +31,11 @@ const router = createRouter({
       component: () => import('@/views/PasswordResetView.vue')
     },
     {
+      path: '/update-password',
+      name: 'update-password',
+      component: () => import('@/views/SetNewPasswordView.vue')
+    },
+    {
       path: '/:catchAll(.*)',
       name: 'not-found',
       component: () => import('@/views/NotFoundView.vue')
@@ -39,22 +44,16 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  const beforeUserLoggedInRoutes = ['signin', 'signup', 'password-reset']
   const userStore = useUserStore()
 
   if (userStore.user === undefined) {
     await userStore.fetchUser()
   }
-
-  if (
-    userStore.user === null &&
-    to.name !== 'signin' &&
-    to.name !== 'signup' &&
-    to.name !== 'password-reset'
-  ) {
+  if (userStore.user === null && !beforeUserLoggedInRoutes.includes(to.name)) {
     next({ name: 'signin' })
   }
-
-  if (userStore.user && to.name === 'password-reset') {
+  if (userStore.user && beforeUserLoggedInRoutes.includes(to.name)) {
     next({ name: 'home' })
   } else {
     next()
