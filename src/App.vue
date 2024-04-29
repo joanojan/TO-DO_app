@@ -12,7 +12,7 @@ const { isLoading } = storeToRefs(appStore)
 
 <template>
 	<base target="_blank">
-	<div class="min-h-screen flex-col dark:bg-slate-600 bg-mario-light dark:bg-mario-dark bg-bottom bg-no-repeat bg-cover">
+	<div class="min-h-screen flex-col dark:bg-slate-600 sm:bg-mario-light sm:dark:bg-mario-dark bg-bottom bg-no-repeat bg-cover">
 		<loading-component v-show="isLoading" />
 		<main class="flex-col">
 			<header-component />
