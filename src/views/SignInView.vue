@@ -56,7 +56,7 @@ const passwordReset = () => {
 
 <template>
 	<main class="mt-4 flex justify-center">
-		<div class="sm:w-full sm:max-w-sm">
+		<div class="max-w-sm">
 			<form @submit.prevent="signIn" class="bg-white p-4 dark:bg-slate-800 rounded-md">
 				<div class="mb-4">
 					<label for="email" class="dark:text-white block text-sm font-medium leading-6 my-2 text-gray-900">
@@ -71,14 +71,14 @@ const passwordReset = () => {
 					<input type="password" id="password" v-model="password" placeholder="Password"
 						class="dark:caret-white dark:bg-slate-700 dark:paceholder-white form-input w-full rounded-md border border-gray-300 py-2 px-3 text-sm">
 				</div>
-				<button-component type="submit" class="w-full">
+				<button-component type="submit" class="w-full mx-auto">
 					Sign In
 				</button-component>
 			</form>
 
 			<sign-prompt-component @click="signUp" />
-			<sign-in-provider-btn-component provider="google" class="mx-auto my-10" />
-			<sign-in-provider-btn-component provider="github" class="mx-auto my-8" />
+			<sign-in-provider-btn-component provider="google" class="mx-auto my-6" />
+			<sign-in-provider-btn-component provider="github" class="mx-auto my-6" />
 		</div>
 	</main>
 </template>
