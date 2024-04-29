@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { fetchActualUser, createNewUser, logIn, logOut, loginWithProvider, resetPassword } from '@/api/userApi'
+import { fetchActualUser, createNewUser, logIn, logOut, loginWithProvider, resetPassword, updatePassword } from '@/api/userApi'
 
 export const useUserStore = defineStore('user', () => {
   // State
@@ -32,9 +32,13 @@ export const useUserStore = defineStore('user', () => {
     user.value = await loginWithProvider(provider)
   }
 
-  // TODO: password reset supabase functionality
+  //sends an email to the user to reset their password
   async function passwordReset(email) {
-    user.value = await resetPassword(email)
+    await resetPassword(email)
+  }
+
+  async function setNewPassword(newPassword) {
+    await updatePassword(newPassword)
   }
 
   return {
@@ -48,6 +52,7 @@ export const useUserStore = defineStore('user', () => {
     signIn,
     signOut,
     signInWithProvider,
-    passwordReset
+    passwordReset,
+    setNewPassword
   }
 })

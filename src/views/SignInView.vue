@@ -9,8 +9,6 @@ import ButtonComponent from '@/components/ButtonComponent.vue'
 import SignPromptComponent from '@/components/SignPromptComponent.vue'
 import SignInProviderBtnComponent from '@/components/SignInProviderBtnComponent.vue'
 
-const appStore = useAppStore()
-
 const toast = useToast()
 
 const triggerToast = (message, type) => {
@@ -23,6 +21,8 @@ const triggerToast = (message, type) => {
 		pauseOnHover: true,
 	})
 }
+
+const appStore = useAppStore()
 
 const router = useRouter()
 

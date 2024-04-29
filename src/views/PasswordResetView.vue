@@ -4,6 +4,21 @@ import { useUserStore } from '@/stores/userStore';
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import CheckEmailComponent from '@/components/CheckEmailComponent.vue';
 import { ref } from 'vue'
+import { useToast } from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-bootstrap.css'
+
+const toast = useToast()
+
+const triggerToast = (message, type) => {
+	toast.open({
+		message: message,
+        type: type,
+        position: 'bottom-right',
+        duration: 3000,
+        dismissible: true,
+        pauseOnHover: true,
+    })
+}
 
 const success = ref(false)
 
@@ -13,10 +28,11 @@ const userStore = useUserStore()
 
 const resetPassword = () => {
     try {
-        success.value = true;
-        userStore.resetPassword(email.value)
+        success.value = true
+        userStore.passwordReset(email.value)
+        triggerToast('Password reset email sent', 'info')
     } catch (error) {
-        console.log(error)
+        triggerToast(error.message, 'error')
     }
 }
 </script>
@@ -35,7 +51,7 @@ const resetPassword = () => {
                 class="ml-0 w-full bg-slate-500 text-white rounded-md py-2 px-4 hover:bg-slate-600 focus:outline-none">
                 Submit
             </button-component>
-            <router-link to="/login" class="hover:underline dark:text-white">Back to login</router-link>
+            <router-link to="/login" class="hover:underline dark:text-white">Back to login page</router-link>
         </form>
     </div>
 </template>
