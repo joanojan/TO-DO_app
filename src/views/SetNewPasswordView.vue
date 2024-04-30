@@ -5,6 +5,7 @@ import 'vue-toast-notification/dist/theme-bootstrap.css'
 import { useUserStore } from '@/stores/userStore'
 import { useAppStore } from '@/stores/appStore'
 import { useRouter } from 'vue-router'
+import ButtonComponent from '@/components/ButtonComponent.vue'
 
 const appStore = useAppStore
 
@@ -35,8 +36,9 @@ const updateUserPassword = async () => {
     }
     try {
         appStore.loading = true
-        userStore.setNewPassword(password.value)
+        await userStore.setNewPassword(password.value)
         router.push('/')
+        await userStore.setRecoveringPassword(false)
         triggerToast('Password updated successfully', 'success')
     } catch (error) {
         triggerToast(error.message, 'error')

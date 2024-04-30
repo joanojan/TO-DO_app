@@ -56,7 +56,7 @@ export const loginWithProvider = async (provider) => {
 //TODO: CHECK THIS IS WORKING
 export const resetPassword = async (email) => {
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: 'https://localhost:5173/update-password',
+    redirectTo: 'http://localhost:5173/update-password'
     //redirectTo: 'https://todo-app-by-jvv.netlify.app/update-password',
   })
   if (error) {
@@ -73,4 +73,26 @@ export const updatePassword = async (newPassword) => {
     throw new Error(error.message)
   }
   return data || undefined
+}
+
+export const updateRecoveringPassword = async (isRecoveringPassword) => {
+  const { error } = await supabase.auth.updateUser({
+    data: {
+      isRecoveringPassword: isRecoveringPassword
+    }
+  })
+  if (error) {
+    throw new Error(error.message)
+  }
+}
+
+export const updateDarkModePreference = async (isDarkMode) => {
+  const { error } = await supabase.auth.updateUser({
+    data: {
+      isDarkMode: isDarkMode
+    }
+  })
+  if (error) {
+    throw new Error(error.message)
+  }
 }

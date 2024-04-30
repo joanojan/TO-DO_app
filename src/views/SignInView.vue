@@ -29,6 +29,7 @@ const router = useRouter()
 const userStore = useUserStore()
 
 const user = ref('')
+
 const password = ref('')
 
 const signIn = async () => {
@@ -77,8 +78,8 @@ const passwordReset = () => {
 			</form>
 
 			<sign-prompt-component @click="signUp" />
-			<sign-in-provider-btn-component provider="google" class="mx-auto my-6" />
-			<sign-in-provider-btn-component provider="github" class="mx-auto my-6" />
+			<sign-in-provider-btn-component provider="google" class="mx-auto sm:my-6" />
+			<sign-in-provider-btn-component provider="github" class="mx-auto sm:my-6" />
 		</div>
 	</main>
 </template>

@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { fetchActualUser, createNewUser, logIn, logOut, loginWithProvider, resetPassword, updatePassword } from '@/api/userApi'
+import { fetchActualUser, updateRecoveringPassword, createNewUser, logIn, logOut, loginWithProvider, resetPassword, updatePassword } from '@/api/userApi'
 
 export const useUserStore = defineStore('user', () => {
   // State
@@ -41,6 +41,10 @@ export const useUserStore = defineStore('user', () => {
     await updatePassword(newPassword)
   }
 
+  async function setRecoveringPassword(isRecoveringPassword) {
+    await updateRecoveringPassword(isRecoveringPassword)
+  }
+
   return {
     // State
     user,
@@ -53,6 +57,7 @@ export const useUserStore = defineStore('user', () => {
     signOut,
     signInWithProvider,
     passwordReset,
-    setNewPassword
+    setNewPassword,
+    setRecoveringPassword
   }
 })

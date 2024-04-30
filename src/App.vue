@@ -4,15 +4,40 @@ import FooterComponent from '@/components/FooterComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import { useAppStore } from '@/stores/appStore'
 import { storeToRefs } from 'pinia'
+import { useUserStore } from './stores/userStore'
+import { onMounted, watch } from 'vue'
+
+const userStore = useUserStore()
+
+const { user } = storeToRefs(userStore)
 
 const appStore = useAppStore()
 
-const { isLoading } = storeToRefs(appStore)
+const { isLoading, darkMode } = storeToRefs(appStore)
+
+watch(() => user.value, () => {
+	if (user.value) {
+		console.log(user.value)
+		/**
+		 * @todo - En función del user_metadata.preferred_theme,
+		 * ejecutar: document.body.classList.toggle('dark', darkMode.value)
+		 */
+	}
+})
+
+watch(() => darkMode.value, () => {
+    document.body.classList.toggle('dark', darkMode.value)
+})
+
+onMounted(() => {
+	document.body.classList.toggle('dark', darkMode.value)
+})
 </script>
 
 <template>
 	<base target="_blank">
-	<div class="min-h-screen flex-col dark:bg-slate-600 bg-mario-light dark:bg-mario-dark bg-bottom bg-no-repeat bg-cover">
+	<div
+		class="min-h-screen flex-col dark:bg-slate-600 sm:bg-mario-light sm:dark:bg-mario-dark bg-bottom bg-no-repeat bg-cover">
 		<loading-component v-show="isLoading" />
 		<main class="flex-col">
 			<header-component />

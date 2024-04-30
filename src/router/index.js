@@ -50,6 +50,9 @@ router.beforeEach(async (to, from, next) => {
   if (userStore.user === undefined) {
     await userStore.fetchUser()
   }
+  if (!userStore.user?.user_metadata.isRecoveringPassword && to.name === 'update-password') {
+    next({ name: 'home' })
+  }
   if (userStore.user === null && !beforeUserLoggedInRoutes.includes(to.name)) {
     next({ name: 'signin' })
   }
