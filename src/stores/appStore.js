@@ -4,22 +4,18 @@ import { ref } from 'vue'
 export const useAppStore = defineStore('app', () => {
   const isLoading = ref(false)
 
-  const darkMode = ref(true)
-
-  const toogleDarkMode = () => {
-    darkMode.value =!darkMode.value
-    document.body.classList.toggle('dark')
-    localStorage.setItem('darkMode', darkMode.value ? 'true' : 'false')
-  }
-
-  const setInitialDarkMode = () => {
+  const darkMode = ref((() => {
     const storedPref = localStorage.getItem('darkMode')
     if (storedPref) {
-      darkMode.value = storedPref === 'true'
+      return storedPref === 'true'
     }
-  }
+    return false
+  })())
 
-  setInitialDarkMode()
+  const toogleDarkMode = async () => {
+    darkMode.value =!darkMode.value    
+    localStorage.setItem('darkMode', darkMode.value ? 'true' : 'false')
+  }
 
   function showLoading() {
     isLoading.value = true

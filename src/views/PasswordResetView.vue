@@ -1,4 +1,3 @@
-<!--TODO: pasword reset supabase feature-->
 <script setup>
 import { useUserStore } from '@/stores/userStore';
 import ButtonComponent from '@/components/ButtonComponent.vue'
@@ -26,11 +25,12 @@ const email = ref(undefined)
 
 const userStore = useUserStore()
 
-const resetPassword = () => {
+const resetPassword = async () => {
     try {
+        await userStore.passwordReset(email.value)
         success.value = true
-        userStore.passwordReset(email.value)
         triggerToast('Password reset email sent', 'info')
+        await userStore.setRecoveringPassword(true)
     } catch (error) {
         triggerToast(error.message, 'error')
     }

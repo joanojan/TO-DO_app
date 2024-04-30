@@ -29,6 +29,7 @@ const router = useRouter()
 const userStore = useUserStore()
 
 const user = ref('')
+
 const password = ref('')
 
 const signIn = async () => {
