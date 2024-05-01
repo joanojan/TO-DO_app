@@ -30,7 +30,9 @@ const resetPassword = async () => {
         await userStore.passwordReset(email.value)
         success.value = true
         triggerToast('Password reset email sent', 'info')
-        await userStore.setRecoveringPassword(true)
+        //await userStore.setRecoveringPassword(true)
+        //This would trigger an error: because user is not authenticated here!
+        // So we cannot use this trick to know if the user is resetting the password.
     } catch (error) {
         triggerToast(error.message, 'error')
     }

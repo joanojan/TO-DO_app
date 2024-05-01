@@ -14,7 +14,8 @@ const route = useRoute()
 const { user } = storeToRefs(userStore)
 
 const title = computed(() => {
-	if (route.path === '/') return 'Tasks'
+	if (route.path === '/') return 'Home'
+	if (route.path === '/tasks') return 'Tasks'
 	if (route.path === '/about') return 'About'
 	if (route.path === '/signin') return 'Sign in'
 	if (route.path === '/signup') return 'Sign up'
