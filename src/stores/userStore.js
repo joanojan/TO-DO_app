@@ -41,6 +41,7 @@ export const useUserStore = defineStore('user', () => {
     await updatePassword(newPassword)
   }
 
+  //TODO: to guard the route for logged in users
   async function setRecoveringPassword(isRecoveringPassword) {
     await updateRecoveringPassword(isRecoveringPassword)
   }

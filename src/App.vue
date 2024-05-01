@@ -17,16 +17,13 @@ const { isLoading, darkMode } = storeToRefs(appStore)
 
 watch(() => user.value, () => {
 	if (user.value) {
-		console.log(user.value)
-		/**
-		 * @todo - En función del user_metadata.preferred_theme,
-		 * ejecutar: document.body.classList.toggle('dark', darkMode.value)
-		 */
+		const { isDarkMode } = user.value.user_metadata
+		appStore.setUserDarkModePreference(isDarkMode)
 	}
 })
 
 watch(() => darkMode.value, () => {
-    document.body.classList.toggle('dark', darkMode.value)
+	document.body.classList.toggle('dark', darkMode.value)
 })
 
 onMounted(() => {

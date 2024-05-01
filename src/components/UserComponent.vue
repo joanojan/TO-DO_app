@@ -84,6 +84,10 @@ document.addEventListener('click', (event) => {
             <div class="py-1" role="none">
                 <a v-if="route.path !== '/'" @click="handleMenuItemClick('/')"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1">
+                    Home
+                </a>
+                <a v-if="route.path !== '/tasks'" @click="handleMenuItemClick('/tasks')"
+                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1">
                     Tasks
                 </a>
                 <a v-if="route.path !== '/about'" @click="handleMenuItemClick('/about')"

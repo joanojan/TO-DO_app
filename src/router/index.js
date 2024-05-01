@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
-import TasksView from '@/views/TasksView.vue'
+import HomeView from '@/views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,7 +8,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: TasksView
+      component: HomeView
+    },
+    {
+      path: '/tasks',
+      name: 'tasks',
+      component: () => import('@/views/TasksView.vue')
     },
     {
       path: '/signin',
@@ -50,9 +55,10 @@ router.beforeEach(async (to, from, next) => {
   if (userStore.user === undefined) {
     await userStore.fetchUser()
   }
-  if (!userStore.user?.user_metadata.isRecoveringPassword && to.name === 'update-password') {
-    next({ name: 'home' })
-  }
+  //this is not working because we do not have the isRecoveringPassword for the moment... 
+  // if (!userStore.user?.user_metadata.isRecoveringPassword && to.name === 'update-password') {
+  //   next({ name: 'home' })
+  // }
   if (userStore.user === null && !beforeUserLoggedInRoutes.includes(to.name)) {
     next({ name: 'signin' })
   }
