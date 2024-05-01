@@ -6,6 +6,7 @@ import { useAppStore } from '@/stores/appStore'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from './stores/userStore'
 import { onMounted, watch } from 'vue'
+import WelcomeModalComponent from '@/components/WelcomeModalComponent.vue'
 
 const userStore = useUserStore()
 
@@ -18,15 +19,13 @@ const { isLoading, darkMode } = storeToRefs(appStore)
 watch(() => user.value, () => {
 	if (user.value) {
 		console.log(user.value)
-		/**
-		 * @todo - En función del user_metadata.preferred_theme,
-		 * ejecutar: document.body.classList.toggle('dark', darkMode.value)
-		 */
+		const { isDarkMode } = user.value.user_metadata
+		appStore.setUserDarkModePreference(isDarkMode)
 	}
 })
 
 watch(() => darkMode.value, () => {
-    document.body.classList.toggle('dark', darkMode.value)
+	document.body.classList.toggle('dark', darkMode.value)
 })
 
 onMounted(() => {
@@ -39,6 +38,7 @@ onMounted(() => {
 	<div
 		class="min-h-screen flex-col dark:bg-slate-600 sm:bg-mario-light sm:dark:bg-mario-dark bg-bottom bg-no-repeat bg-cover">
 		<loading-component v-show="isLoading" />
+		<welcome-modal-component />
 		<main class="flex-col">
 			<header-component />
 			<router-view />

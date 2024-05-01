@@ -2,11 +2,15 @@
 import AddTask from '@/components/AddTaskComponent.vue'
 import TaskComponent from '@/components/TaskComponent.vue'
 import { onMounted } from 'vue'
-import { useTasksStore } from '@/stores/tasksStore'
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/stores/appStore'
 import { useToast } from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-bootstrap.css'
+import { useTasksStore } from '@/stores/tasksStore'
+
+const tasksStore = useTasksStore()
+
+const { tasks } = storeToRefs(tasksStore)
 
 const toast = useToast()
 
@@ -20,10 +24,6 @@ const triggerToast = (message, type) => {
         pauseOnHover: true,
     })
 }
-
-const tasksStore = useTasksStore()
-
-const { tasks } = storeToRefs(tasksStore)
 
 const appStore = useAppStore()
 

@@ -1,20 +1,22 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { updateDarkModePreference } from '@/api/userApi'
 
 export const useAppStore = defineStore('app', () => {
   const isLoading = ref(false)
 
-  const darkMode = ref((() => {
-    const storedPref = localStorage.getItem('darkMode')
-    if (storedPref) {
-      return storedPref === 'true'
-    }
-    return false
-  })())
+  const darkMode = ref(false)
 
   const toogleDarkMode = async () => {
-    darkMode.value =!darkMode.value    
-    localStorage.setItem('darkMode', darkMode.value ? 'true' : 'false')
+    darkMode.value = !darkMode.value
+  }
+
+  const setUserDarkModePreference = (isDarkMode) => {
+    darkMode.value = isDarkMode
+  }
+
+  const persistDarkMode = async () => {
+    await updateDarkModePreference(darkMode.value)
   }
 
   function showLoading() {
@@ -24,5 +26,5 @@ export const useAppStore = defineStore('app', () => {
     isLoading.value = false
   }
 
-  return { isLoading, darkMode, toogleDarkMode, showLoading, hideLoading }
+  return { isLoading, darkMode, toogleDarkMode, showLoading, hideLoading, setUserDarkModePreference, persistDarkMode }
 })
