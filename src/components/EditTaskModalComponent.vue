@@ -36,7 +36,9 @@ const task = ref(tasks.value.find((task) => task.id === props.taskId))
 const taskTitle = ref(task.value.title)
 
 const updateTask = async () => {
-  if (taskTitle.value.length < 4) { alert('Please give a title (Min 4 letters)') }
+  if (taskTitle.value.length < 4) { 
+    triggerToast('Please give a title (Min 4 letters)', 'warning') 
+  }
   else {
     try {
       appStore.showLoading()
