@@ -75,6 +75,7 @@ export const updatePassword = async (newPassword) => {
   return data || undefined
 }
 
+// TODO - THIS FUNCTIONALITY IS NOT OPERATIVE YET
 export const updateRecoveringPassword = async (isRecoveringPassword) => {
   const { error } = await supabase.auth.updateUser({
     data: {

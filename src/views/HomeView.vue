@@ -8,7 +8,5 @@ import ButtonComponent from '@/components/ButtonComponent.vue';
         <router-link to="/tasks" class="flex justify-center">
             <button-component class="bg-black">Go to your Tasks</button-component>
         </router-link>
-
-
     </section>
 </template>
