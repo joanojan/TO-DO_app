@@ -48,7 +48,7 @@ const signIn = async () => {
 
 <template>
     <button :class="{ disabled: disabled }" @click="signIn"
-        class="hover:bg-slate-400 border-2 border-tranparent hover:border-black flex items-center bg-white dark:bg-slate-800 dark:text-white rounded-lg p-2">
+        class="mb-2 hover:bg-slate-400 border-2 border-tranparent hover:border-black flex items-center bg-white dark:bg-slate-800 dark:text-white rounded-lg p-2">
         <div v-if="provider === 'google'" class="flex">
             <img src="@/assets/icons/google.svg" alt="Google" class="w-6 h-6 mx-2" />
             <span class="mx-2">Sign in with Google</span>
